@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fridoce Design and Trade Center — Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .page-head{padding:60px 0 20px; text-align:center;}
+  .page-head .eyebrow{justify-content:center; display:flex;}
+  .page-head h1{font-size:clamp(30px,4vw,44px); margin-top:10px;}
+
+  /* SERVICES DETAILLES */
+  #services{padding-top:30px;}
+  .service-row{
+    display:grid; grid-template-columns:0.9fr 1.6fr; gap:36px; align-items:start;
+    padding:34px 0; border-bottom:1px solid var(--line);
+  }
+  .service-row:first-of-type{border-top:1px solid var(--line);}
+  .service-row .num{font-family:'Montserrat',sans-serif; font-size:15px; color:var(--gold); font-weight:700; letter-spacing:.08em;}
+  .service-row h3{font-size:24px; margin:8px 0 6px;}
+  .service-row .price{font-size:14px; color:var(--orange-deep); font-weight:700; margin-bottom:10px;}
+  .service-row p.desc{font-size:15px; color:#444; margin:0 0 14px;}
+  .service-row ul{margin:0 0 16px; padding-left:18px; font-size:14.5px; color:#333;}
+  .service-row li{margin-bottom:6px;}
+  .buy-btn{
+    display:inline-block; padding:10px 22px; border-radius:30px; background:var(--navy-deep); color:#fff;
+    text-decoration:none; font-size:14px; font-weight:600;
+  }
+
+  /* PORTFOLIO */
+  #portfolio{background:var(--paper); border-top:1px solid var(--line);}
+  .grid-portfolio{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .port-card{border-radius:16px; overflow:hidden; border:1px solid var(--line); background:var(--sand);}
+  .port-thumb{height:160px; background:linear-gradient(135deg,#1A1A1A 0%, var(--orange) 100%); display:flex; align-items:center; justify-content:center; color:var(--sand); font-family:'Montserrat',sans-serif; font-size:14px; letter-spacing:.04em; text-align:center; padding:12px;}
+  .port-info{padding:16px 18px;}
+  .port-info h4{font-size:15px; margin:0 0 4px; font-family:'Work Sans'; font-weight:600;}
+  .port-info p{font-size:13px; color:#666; margin:0;}
+  .tag-soon{display:inline-block; font-size:11px; background:var(--gold); color:#fff; padding:3px 9px; border-radius:20px; margin-top:8px; font-weight:600;}
+
+  @media (max-width:860px){
+    .service-row{grid-template-columns:1fr;}
+    .grid-portfolio{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:560px){
+    .grid-portfolio{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="brand"><img src="assets/logo_icon.png" alt="Logo Fridoce" style="height:34px; width:auto; display:block;"> Fridoce Design and Trade Center</a>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html" class="current">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="index.html#apropos">À propos</a></li>
+    </ul>
+    <a href="paiement.html#contact" class="nav-cta">Contact</a>
+    <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-head wrap">
+  <div class="eyebrow">Nos services</div>
+  <h1>Des solutions digitales complètes,<br>pensées pour votre activité</h1>
+</div>
+
+<section id="services">
+  <div class="wrap">
+
+    <div class="service-row">
+      <div>
+        <div class="num">01</div>
+        <h3>Graphisme</h3>
+        <div class="price">À partir de 10 000 FCFA / 20 $</div>
+      </div>
+      <div>
+        <p class="desc">Une identité visuelle forte est la première impression que vos clients gardent de votre marque. Je conçois des visuels clairs, modernes et adaptés à votre activité.</p>
+        <ul>
+          <li>Logo &amp; identité visuelle (charte couleurs, typographie)</li>
+          <li>Affiches publicitaires et flyers prêts à diffuser</li>
+          <li>Visuels réseaux sociaux (posts, stories) cohérents avec votre marque</li>
+        </ul>
+        <a href="paiement.html?service=Graphisme#paiement" class="buy-btn">Commander ce service →</a>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div>
+        <div class="num">02</div>
+        <h3>Sites WordPress</h3>
+        <div class="price">À partir de 40 000 FCFA / 70 $</div>
+      </div>
+      <div>
+        <p class="desc">Un site professionnel qui présente votre activité 24h/24, accessible à tous vos clients, où qu'ils soient.</p>
+        <ul>
+          <li>Site vitrine (1 page ou plusieurs pages) pour présenter votre activité</li>
+          <li>Site e-commerce WooCommerce avec gestion de produits et paiement</li>
+          <li>Optimisation mobile et référencement de base</li>
+        </ul>
+        <a href="paiement.html?service=Site+WordPress#paiement" class="buy-btn">Commander ce service →</a>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div>
+        <div class="num">03</div>
+        <h3>E-commerce Shopify</h3>
+        <div class="price">À partir de 60 000 FCFA / 100 $</div>
+      </div>
+      <div>
+        <p class="desc">Lancez votre boutique en ligne sans complications techniques, de la création à la mise en vente de vos premiers produits.</p>
+        <ul>
+          <li>Création de boutique Shopify (thème, pages, configuration)</li>
+          <li>Intégration de produits (photos, descriptions, prix)</li>
+          <li>Accompagnement pour l'importation de produits</li>
+        </ul>
+        <a href="paiement.html?service=Boutique+Shopify#paiement" class="buy-btn">Commander ce service →</a>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div>
+        <div class="num">04</div>
+        <h3>Publicités Facebook / Meta Ads</h3>
+        <div class="price">À partir de 20 000 FCFA / 30 $</div>
+      </div>
+      <div>
+        <p class="desc">Atteignez les bonnes personnes au bon moment grâce à des campagnes publicitaires ciblées et suivies.</p>
+        <ul>
+          <li>Création de campagne (ciblage, visuel, texte publicitaire)</li>
+          <li>Gestion et suivi de performance sur plusieurs jours</li>
+          <li>Rapport de résultats et ajustements</li>
+        </ul>
+        <a href="paiement.html?service=Publicit%C3%A9s+Facebook#paiement" class="buy-btn">Commander ce service →</a>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div>
+        <div class="num">05</div>
+        <h3>Automatisation IA</h3>
+        <div class="price">À partir de 35 000 FCFA / 50 $</div>
+      </div>
+      <div>
+        <p class="desc">Gagnez du temps et restez réactif en automatisant les tâches répétitives de votre business.</p>
+        <ul>
+          <li>Chatbot WhatsApp/Messenger (FAQ, prise de commande)</li>
+          <li>Automatisation de publications réseaux sociaux</li>
+          <li>Workflows business (relances clients, rapports automatiques)</li>
+        </ul>
+        <a href="paiement.html?service=Automatisation+IA#paiement" class="buy-btn">Commander ce service →</a>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div>
+        <div class="num">06</div>
+        <h3>Contenu &amp; Ebooks</h3>
+        <div class="price">À partir de 5 000 FCFA / 10 $</div>
+      </div>
+      <div>
+        <p class="desc">Du contenu professionnel rédigé et structuré, assisté par les meilleurs outils d'intelligence artificielle.</p>
+        <ul>
+          <li>Articles et rédaction web optimisés</li>
+          <li>Ebooks et guides complets (15 à 30 pages, design inclus)</li>
+        </ul>
+        <a href="paiement.html?service=Contenu+%26+Ebooks#paiement" class="buy-btn">Commander ce service →</a>
+      </div>
+    </div>
+
+    <div class="service-row" style="border-bottom:none;">
+      <div>
+        <div class="num">07</div>
+        <h3>Service technique</h3>
+        <div class="price">À partir de 5 000 FCFA</div>
+      </div>
+      <div>
+        <p class="desc">Un dépannage rapide et fiable pour garder votre ordinateur opérationnel.</p>
+        <ul>
+          <li>Réinstallation Windows (formatage + drivers)</li>
+          <li>Installation de logiciels essentiels (bureau, antivirus...)</li>
+        </ul>
+        <a href="paiement.html?service=Service+technique#paiement" class="buy-btn">Commander ce service →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Portfolio</div>
+      <h2>Réalisations &amp; projets en cours</h2>
+    </div>
+    <div class="grid-portfolio">
+      <div class="port-card">
+        <div class="port-thumb">Identité visuelle<br>— Projet client —</div>
+        <div class="port-info"><h4>Logo &amp; charte graphique</h4><p>Petite entreprise locale</p><span class="tag-soon">Bientôt disponible</span></div>
+      </div>
+      <div class="port-card">
+        <div class="port-thumb">Boutique en ligne<br>— Projet client —</div>
+        <div class="port-info"><h4>Boutique Shopify</h4><p>E-commerce import/vente</p><span class="tag-soon">Bientôt disponible</span></div>
+      </div>
+      <div class="port-card">
+        <div class="port-thumb">Site vitrine<br>— Ce site —</div>
+        <div class="port-info"><h4><a href="https://www.facebook.com/dtacademy2" target="_blank" class="brand-link">Fridoce Design and Trade Center</a></h4><p>Site officiel de la marque</p><span class="tag-soon">En ligne</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="https://www.facebook.com/dtacademy2" target="_blank" class="brand-link" style="color:rgba(255,255,255,0.85);">Fridoce Design and Trade Center</a> — Cotonou, Bénin — © 2026
+</footer>
+
+<script src="dynamic.js"></script>
+</body>
+</html>
