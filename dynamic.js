@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* 1. Ombre sur le menu au scroll */
+  /* Ombre sur le menu au scroll */
   const nav = document.querySelector('nav');
   if (nav) {
     window.addEventListener('scroll', function () {
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* 2. Menu mobile (hamburger) */
+  /* Menu mobile (hamburger) */
   const burger = document.querySelector('.nav-burger');
   const navList = document.querySelector('nav ul');
   if (burger && navList) {
@@ -24,47 +24,46 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* 3. Apparition en douceur au scroll */
-  const revealSelectors = [
-    '.promesse', '.service-row', '.port-card', '.pay-box', '#service-summary',
-    '.photo-frame', '.about-grid > div', '.contact-grid > div', '.contact-grid > .contact-info',
-    '.faq-item', '.hero-grid > div', '.page-head', '.section-head', '.testimonial-card'
-  ];
-  const revealEls = document.querySelectorAll(revealSelectors.join(','));
-  revealEls.forEach(function (el, i) {
-    el.classList.add('reveal');
-    el.style.transitionDelay = Math.min(i % 6 * 70, 280) + 'ms';
+  /* Boutons magnétiques (suivent légèrement la souris) */
+  document.querySelectorAll('.btn-primary, .nav-cta').forEach(function (btn) {
+    btn.addEventListener('mousemove', function (e) {
+      const r = btn.getBoundingClientRect();
+      const x = (e.clientX - r.left - r.width / 2) * 0.18;
+      const y = (e.clientY - r.top - r.height / 2) * 0.3;
+      btn.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+    });
+    btn.addEventListener('mouseleave', function () { btn.style.transform = ''; });
   });
 
+  /* Apparition en cascade au scroll (IntersectionObserver, sans scroll listener) */
+  const revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
+    const io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry, i) {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+          setTimeout(function () { entry.target.classList.add('in'); }, i * 60);
+          io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
-    revealEls.forEach(function (el) { observer.observe(el); });
+    }, { threshold: 0.15 });
+    revealEls.forEach(function (el) { io.observe(el); });
   } else {
-    revealEls.forEach(function (el) { el.classList.add('visible'); });
+    revealEls.forEach(function (el) { el.classList.add('in'); });
   }
 
-  /* 4. Compteurs animés (ex: 6+, 2, 100%) */
-  const counters = document.querySelectorAll('.stats div b');
+  /* Compteurs animés */
+  const counters = document.querySelectorAll('.stat-num, .stats div b');
   function animateCounter(el) {
     const raw = el.textContent.trim();
     const match = raw.match(/^(\d+)(.*)$/);
     if (!match) return;
     const target = parseInt(match[1], 10);
     const suffix = match[2] || '';
-    let current = 0;
     const duration = 900;
     const start = performance.now();
     function tick(now) {
       const progress = Math.min((now - start) / duration, 1);
-      current = Math.round(target * progress);
-      el.textContent = current + suffix;
+      el.textContent = Math.round(target * progress) + suffix;
       if (progress < 1) requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
@@ -81,92 +80,6 @@ document.addEventListener('DOMContentLoaded', function () {
     counters.forEach(function (el) { counterObserver.observe(el); });
   }
 
-  /* 5. Fondu d'entrée global à l'arrivée sur la page */
   document.body.classList.add('page-loaded');
-
-  /* 6. Sticky WhatsApp contact button - show on scroll */
-  const stickyContact = document.querySelector('.sticky-contact');
-  if (stickyContact) {
-    window.addEventListener('scroll', function () {
-      if (window.scrollY > 400) {
-        stickyContact.classList.add('visible');
-      } else {
-        stickyContact.classList.remove('visible');
-      }
-    });
-    stickyContact.addEventListener('click', function () {
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'contact_click', {
-          'event_category': 'engagement',
-          'event_label': 'sticky_whatsapp'
-        });
-      }
-    });
-  }
-
-  /* 7. CTA tracking - track clicks on primary CTAs */
-  document.querySelectorAll('.btn-primary').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      const text = btn.textContent.trim();
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'cta_click', {
-          'event_category': 'conversion',
-          'event_label': text
-        });
-      }
-    });
-  });
-
-  /* 8. Charger la liste des pays depuis JSON */
-  const phoneCountrySelect = document.getElementById('phone-country');
-  if (phoneCountrySelect) {
-    fetch('assets/countries.json')
-      .then(function (response) { return response.json(); })
-      .catch(function (err) {
-        console.warn('Countries JSON not found, using default list:', err);
-        return [];
-      })
-      .then(function (countries) {
-        if (countries.length === 0) return;
-        // Vider et repeupler le select
-        phoneCountrySelect.innerHTML = '';
-        countries.forEach(function (country) {
-          const opt = document.createElement('option');
-          opt.value = country.code;
-          opt.textContent = country.name + ' (' + country.code + ')';
-          if (country.code === '+229') opt.selected = true; // Bénin par défaut
-          phoneCountrySelect.appendChild(opt);
-        });
-      });
-  }
-
-  /* 9. Paiement - tracking et validation */
-  const payButton = document.getElementById('pay-button');
-  if (payButton) {
-    payButton.addEventListener('click', function () {
-      const amount = parseInt(document.getElementById('fedapay-amount').value, 10);
-      const email = document.getElementById('fedapay-email').value;
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'payment_initiated', {
-          'event_category': 'ecommerce',
-          'event_label': 'fedapay',
-          'value': amount
-        });
-      }
-    });
-  }
-
-  /* 10. Form submission tracking */
-  const contactForm = document.querySelector('.form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'contact_form_submit', {
-          'event_category': 'engagement',
-          'event_label': 'contact_page'
-        });
-      }
-    });
-  }
 
 });
