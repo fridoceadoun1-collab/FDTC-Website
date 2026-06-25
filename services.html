@@ -3,51 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Découvrez nos services : graphisme, sites WordPress, e-commerce Shopify, publicités Facebook, automatisation IA, contenu web et support technique. Tarifs transparents depuis Cotonou.">
+<meta name="keywords" content="services digitaux, graphisme, WordPress, Shopify, e-commerce, IA, publicités Meta, Cotonou">
+<meta property="og:title" content="Nos Services — Fridoce Design and Trade Center">
+<meta property="og:description" content="7 services digitaux complets : graphisme, sites, e-commerce, automatisation IA, publicités. Tarifs à partir de 5 000 FCFA.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fridocedesign.com/services.html">
+<meta property="og:image" content="https://fridocedesign.com/assets/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Services — Fridoce Design and Trade Center">
+<meta name="twitter:description" content="Graphisme, sites web, e-commerce, IA, publicités. Solutions digitales complètes.">
 <title>Fridoce Design and Trade Center — Services</title>
+<link rel="icon" type="image/png" href="assets/logo_icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<style>
-  .page-head{padding:60px 0 20px; text-align:center;}
-  .page-head .eyebrow{justify-content:center; display:flex;}
-  .page-head h1{font-size:clamp(30px,4vw,44px); margin-top:10px;}
-
-  /* SERVICES DETAILLES */
-  #services{padding-top:30px;}
-  .service-row{
-    display:grid; grid-template-columns:0.9fr 1.6fr; gap:36px; align-items:start;
-    padding:34px 0; border-bottom:1px solid var(--line);
-  }
-  .service-row:first-of-type{border-top:1px solid var(--line);}
-  .service-row .num{font-family:'Montserrat',sans-serif; font-size:15px; color:var(--gold); font-weight:700; letter-spacing:.08em;}
-  .service-row h3{font-size:24px; margin:8px 0 6px;}
-  .service-row .price{font-size:14px; color:var(--orange-deep); font-weight:700; margin-bottom:10px;}
-  .service-row p.desc{font-size:15px; color:#444; margin:0 0 14px;}
-  .service-row ul{margin:0 0 16px; padding-left:18px; font-size:14.5px; color:#333;}
-  .service-row li{margin-bottom:6px;}
-  .buy-btn{
-    display:inline-block; padding:10px 22px; border-radius:30px; background:var(--navy-deep); color:#fff;
-    text-decoration:none; font-size:14px; font-weight:600;
-  }
-
-  /* PORTFOLIO */
-  #portfolio{background:var(--paper); border-top:1px solid var(--line);}
-  .grid-portfolio{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
-  .port-card{border-radius:16px; overflow:hidden; border:1px solid var(--line); background:var(--sand);}
-  .port-thumb{height:160px; background:linear-gradient(135deg,#1A1A1A 0%, var(--orange) 100%); display:flex; align-items:center; justify-content:center; color:var(--sand); font-family:'Montserrat',sans-serif; font-size:14px; letter-spacing:.04em; text-align:center; padding:12px;}
-  .port-info{padding:16px 18px;}
-  .port-info h4{font-size:15px; margin:0 0 4px; font-family:'Work Sans'; font-weight:600;}
-  .port-info p{font-size:13px; color:#666; margin:0;}
-  .tag-soon{display:inline-block; font-size:11px; background:var(--gold); color:#fff; padding:3px 9px; border-radius:20px; margin-top:8px; font-weight:600;}
-
-  @media (max-width:860px){
-    .service-row{grid-template-columns:1fr;}
-    .grid-portfolio{grid-template-columns:1fr 1fr;}
-  }
-  @media (max-width:560px){
-    .grid-portfolio{grid-template-columns:1fr;}
-  }
-</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-367284844"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-367284844');
+</script>
 </head>
 <body>
 
@@ -61,7 +38,7 @@
       <li><a href="index.html#apropos">À propos</a></li>
     </ul>
     <a href="paiement.html#contact" class="nav-cta">Contact</a>
-    <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="nav-burger" aria-label="Menu" role="button" tabindex="0"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -73,7 +50,7 @@
 <section id="services">
   <div class="wrap">
 
-    <div class="service-row">
+    <div class="service-row reveal">
       <div>
         <div class="num">01</div>
         <h3>Graphisme</h3>
@@ -90,7 +67,7 @@
       </div>
     </div>
 
-    <div class="service-row">
+    <div class="service-row reveal">
       <div>
         <div class="num">02</div>
         <h3>Sites WordPress</h3>
@@ -107,7 +84,7 @@
       </div>
     </div>
 
-    <div class="service-row">
+    <div class="service-row reveal">
       <div>
         <div class="num">03</div>
         <h3>E-commerce Shopify</h3>
@@ -124,7 +101,7 @@
       </div>
     </div>
 
-    <div class="service-row">
+    <div class="service-row reveal">
       <div>
         <div class="num">04</div>
         <h3>Publicités Facebook / Meta Ads</h3>
@@ -141,7 +118,7 @@
       </div>
     </div>
 
-    <div class="service-row">
+    <div class="service-row reveal">
       <div>
         <div class="num">05</div>
         <h3>Automatisation IA</h3>
@@ -158,7 +135,7 @@
       </div>
     </div>
 
-    <div class="service-row">
+    <div class="service-row reveal">
       <div>
         <div class="num">06</div>
         <h3>Contenu &amp; Ebooks</h3>
@@ -174,7 +151,7 @@
       </div>
     </div>
 
-    <div class="service-row" style="border-bottom:none;">
+    <div class="service-row reveal" style="border-bottom:none;">
       <div>
         <div class="num">07</div>
         <h3>Service technique</h3>
@@ -200,25 +177,27 @@
       <h2>Réalisations &amp; projets en cours</h2>
     </div>
     <div class="grid-portfolio">
-      <div class="port-card">
+      <div class="port-card reveal">
         <div class="port-thumb">Identité visuelle<br>— Projet client —</div>
         <div class="port-info"><h4>Logo &amp; charte graphique</h4><p>Petite entreprise locale</p><span class="tag-soon">Bientôt disponible</span></div>
       </div>
-      <div class="port-card">
+      <div class="port-card reveal">
         <div class="port-thumb">Boutique en ligne<br>— Projet client —</div>
         <div class="port-info"><h4>Boutique Shopify</h4><p>E-commerce import/vente</p><span class="tag-soon">Bientôt disponible</span></div>
       </div>
-      <div class="port-card">
+      <div class="port-card reveal">
         <div class="port-thumb">Site vitrine<br>— Ce site —</div>
-        <div class="port-info"><h4><a href="https://www.facebook.com/dtacademy2" target="_blank" class="brand-link">Fridoce Design and Trade Center</a></h4><p>Site officiel de la marque</p><span class="tag-soon">En ligne</span></div>
+        <div class="port-info"><h4><a href="https://www.facebook.com/dtacademy2" target="_blank" rel="noopener noreferrer" class="brand-link">Fridoce Design and Trade Center</a></h4><p>Site officiel de la marque</p><span class="tag-soon">Présent</span></div>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <a href="https://www.facebook.com/dtacademy2" target="_blank" class="brand-link" style="color:rgba(255,255,255,0.85);">Fridoce Design and Trade Center</a> — Cotonou, Bénin — © 2026
+  <a href="https://www.facebook.com/dtacademy2" target="_blank" rel="noopener noreferrer" class="brand-link" style="color:rgba(255,255,255,0.85);">Fridoce Design and Trade Center</a> — Cotonou, Bénin — © 2026
 </footer>
+
+<a href="https://wa.me/22995250774?text=Bonjour%2C%20j%27aimerais%20en%20savoir%20plus%20sur%20vos%20services." target="_blank" rel="noopener noreferrer" class="sticky-contact" aria-label="Nous contacter sur WhatsApp" role="link"><span style="font-size:24px;">💬</span><span class="sticky-contact-label">Nous contacter</span></a>
 
 <script src="dynamic.js"></script>
 </body>

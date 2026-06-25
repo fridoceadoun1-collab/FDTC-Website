@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const revealSelectors = [
     '.promesse', '.service-row', '.port-card', '.pay-box', '#service-summary',
     '.photo-frame', '.about-grid > div', '.contact-grid > div', '.contact-grid > .contact-info',
-    '.faq-item', '.hero-grid > div', '.page-head', '.section-head'
+    '.faq-item', '.hero-grid > div', '.page-head', '.section-head', '.testimonial-card'
   ];
   const revealEls = document.querySelectorAll(revealSelectors.join(','));
   revealEls.forEach(function (el, i) {
@@ -83,5 +83,90 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* 5. Fondu d'entrée global à l'arrivée sur la page */
   document.body.classList.add('page-loaded');
+
+  /* 6. Sticky WhatsApp contact button - show on scroll */
+  const stickyContact = document.querySelector('.sticky-contact');
+  if (stickyContact) {
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 400) {
+        stickyContact.classList.add('visible');
+      } else {
+        stickyContact.classList.remove('visible');
+      }
+    });
+    stickyContact.addEventListener('click', function () {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'contact_click', {
+          'event_category': 'engagement',
+          'event_label': 'sticky_whatsapp'
+        });
+      }
+    });
+  }
+
+  /* 7. CTA tracking - track clicks on primary CTAs */
+  document.querySelectorAll('.btn-primary').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const text = btn.textContent.trim();
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'cta_click', {
+          'event_category': 'conversion',
+          'event_label': text
+        });
+      }
+    });
+  });
+
+  /* 8. Charger la liste des pays depuis JSON */
+  const phoneCountrySelect = document.getElementById('phone-country');
+  if (phoneCountrySelect) {
+    fetch('assets/countries.json')
+      .then(function (response) { return response.json(); })
+      .catch(function (err) {
+        console.warn('Countries JSON not found, using default list:', err);
+        return [];
+      })
+      .then(function (countries) {
+        if (countries.length === 0) return;
+        // Vider et repeupler le select
+        phoneCountrySelect.innerHTML = '';
+        countries.forEach(function (country) {
+          const opt = document.createElement('option');
+          opt.value = country.code;
+          opt.textContent = country.name + ' (' + country.code + ')';
+          if (country.code === '+229') opt.selected = true; // Bénin par défaut
+          phoneCountrySelect.appendChild(opt);
+        });
+      });
+  }
+
+  /* 9. Paiement - tracking et validation */
+  const payButton = document.getElementById('pay-button');
+  if (payButton) {
+    payButton.addEventListener('click', function () {
+      const amount = parseInt(document.getElementById('fedapay-amount').value, 10);
+      const email = document.getElementById('fedapay-email').value;
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'payment_initiated', {
+          'event_category': 'ecommerce',
+          'event_label': 'fedapay',
+          'value': amount
+        });
+      }
+    });
+  }
+
+  /* 10. Form submission tracking */
+  const contactForm = document.querySelector('.form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'contact_form_submit', {
+          'event_category': 'engagement',
+          'event_label': 'contact_page'
+        });
+      }
+    });
+  }
 
 });
