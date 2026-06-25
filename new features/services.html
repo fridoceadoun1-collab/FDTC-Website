@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fridoce Design and Trade Center — Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .page-head{padding:4.5rem 0 1rem; text-align:center;}
+  .page-head .eyebrow{display:flex; justify-content:center;}
+  .page-head h1{font-size:clamp(2rem,4vw,2.8rem); margin-top:0.6rem; letter-spacing:-0.02em;}
+
+  /* OFFERS zig-zag */
+  .offers{display:flex; flex-direction:column;}
+  .offer-row{display:grid; grid-template-columns:0.85fr 1.15fr; gap:3rem; align-items:center; padding:3rem 0; border-bottom:1px solid var(--border);}
+  .offer-row:nth-child(even){grid-template-columns:1.15fr 0.85fr;}
+  .offer-row:nth-child(even) .offer-visual{order:2;}
+  @media (max-width:840px){
+    .offer-row, .offer-row:nth-child(even){grid-template-columns:1fr; gap:1.5rem;}
+    .offer-row:nth-child(even) .offer-visual{order:0;}
+  }
+  .offer-idx{font-family:'JetBrains Mono',monospace; color:var(--text-faint); font-size:0.85rem; margin-bottom:0.6rem;}
+  .offer-title{font-size:1.4rem; font-weight:700; letter-spacing:-0.015em; margin:0 0 0.7rem;}
+  .offer-text{color:var(--text-dim); font-size:0.95rem; line-height:1.6; max-width:48ch; margin:0 0 1rem;}
+  .offer-list{margin:0 0 1rem; padding-left:1.1rem; color:var(--text-dim); font-size:0.92rem;}
+  .offer-list li{margin-bottom:0.35rem;}
+  .offer-price{display:inline-flex; gap:0.6rem; font-family:'JetBrains Mono',monospace; font-size:0.85rem; margin-bottom:1.1rem;}
+  .offer-price .fcfa{color:var(--text);} .offer-price .usd{color:var(--text-faint);}
+
+  .offer-visual{height:220px; border-radius:var(--radius-md); border:1px solid var(--border); background:var(--surface); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;}
+  .offer-visual::after{content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 20%, var(--accent-soft), transparent 60%);}
+  .offer-visual .ring{width:120px; height:120px; border-radius:50%; border:1px solid var(--accent-line); display:flex; align-items:center; justify-content:center; position:relative; z-index:1;}
+  .offer-visual .ring::before{content:''; position:absolute; inset:-14px; border-radius:50%; border:1px solid var(--border); animation:spin-slow 16s linear infinite;}
+  .offer-visual .ring svg{width:34px; height:34px; stroke:var(--accent);}
+
+  .order-btn{display:inline-block; margin-top:0.4rem;}
+
+  .tiers{display:flex; gap:0.7rem; flex-wrap:wrap; margin-bottom:1.2rem;}
+  .tier-card{
+    flex:1; min-width:140px; background:var(--bg-soft); border:1px solid var(--border); border-radius:var(--radius-sm);
+    padding:0.9rem 1rem; text-decoration:none; color:var(--text); transition:border-color .25s, transform .3s cubic-bezier(.16,1,.3,1);
+  }
+  .tier-card:hover{border-color:var(--accent-line); transform:translateY(-2px);}
+  .tier-card.premium{border-color:var(--accent-line); background:linear-gradient(160deg,var(--accent-soft),var(--bg-soft) 70%);}
+  .tier-name{font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-faint); font-weight:700; margin-bottom:0.3rem;}
+  .tier-card.premium .tier-name{color:var(--accent2);}
+  .tier-price{font-family:'JetBrains Mono',monospace; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.15rem;}
+  .tier-usd{font-size:0.72rem; color:var(--text-faint);}
+
+  /* PORTFOLIO proof-style */
+  #portfolio{border-top:1px solid var(--border);}
+  .proof{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border-radius:var(--radius-md); overflow:hidden;}
+  @media (max-width:768px){.proof{grid-template-columns:1fr;}}
+  .proof-cell{background:var(--bg-soft); padding:2.2rem 1.8rem;}
+  .proof-quote{font-size:1rem; line-height:1.6; color:var(--text); margin:0 0 1.2rem;}
+  .proof-who{font-size:0.82rem; color:var(--text-faint);}
+  .proof-who b{color:var(--text-dim); font-weight:600;}
+  .tag-soon{display:inline-block; font-size:0.72rem; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#1c1407; padding:3px 10px; border-radius:20px; margin-top:10px; font-weight:700;}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="brand"><img src="assets/logo_icon.png" alt="Logo Fridoce" style="height:34px; width:auto;"> Fridoce Design and Trade Center</a>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html" class="current">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="index.html#apropos">À propos</a></li>
+    </ul>
+    <a href="paiement.html#contact" class="nav-cta">Contact</a>
+    <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <div class="page-head">
+    <div class="eyebrow">Offres signature</div>
+    <h1>Sept façons de<br>faire avancer votre projet.</h1>
+  </div>
+
+  <section id="services" style="padding-top:1rem;">
+    <div class="offers">
+
+      <div class="offer-row reveal">
+        <div>
+          <div class="offer-idx">Offre — 01</div>
+          <h3 class="offer-title">Graphisme</h3>
+          <p class="offer-text">Une identité visuelle forte est la première impression que vos clients gardent de votre marque.</p>
+          <ul class="offer-list">
+            <li>Logo &amp; identité visuelle (charte couleurs, typographie)</li>
+            <li>Affiches publicitaires et flyers prêts à diffuser</li>
+            <li>Visuels réseaux sociaux (posts, stories) cohérents</li>
+          </ul>
+          <div class="tiers">
+            <a href="paiement.html?service=Graphisme+-+Basic#paiement" class="tier-card">
+              <div class="tier-name">Basic</div>
+              <div class="tier-price">12 000 FCFA</div>
+              <div class="tier-usd">≈ 20 USD</div>
+            </a>
+            <a href="paiement.html?service=Graphisme+-+Standard#paiement" class="tier-card">
+              <div class="tier-name">Standard</div>
+              <div class="tier-price">25 000 FCFA</div>
+              <div class="tier-usd">≈ 40 USD</div>
+            </a>
+            <a href="paiement.html?service=Graphisme+-+Premium#paiement" class="tier-card premium">
+              <div class="tier-name">Premium</div>
+              <div class="tier-price">45 000 FCFA</div>
+              <div class="tier-usd">≈ 75 USD</div>
+            </a>
+          </div>
+        </div>
+        <div class="offer-visual">
+          <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        </div>
+      </div>
+
+      <div class="offer-row reveal">
+        <div>
+          <div class="offer-idx">Offre — 02</div>
+          <h3 class="offer-title">Sites WordPress</h3>
+          <p class="offer-text">Un site professionnel qui présente votre activité 24h/24, accessible à tous vos clients.</p>
+          <ul class="offer-list">
+            <li>Site vitrine (1 page ou plusieurs pages)</li>
+            <li>Site e-commerce WooCommerce avec paiement intégré</li>
+            <li>Optimisation mobile et référencement de base</li>
+          </ul>
+          <div class="tiers">
+            <a href="paiement.html?service=Site+WordPress+-+Basic#paiement" class="tier-card">
+              <div class="tier-name">Basic</div>
+              <div class="tier-price">45 000 FCFA</div>
+              <div class="tier-usd">≈ 75 USD</div>
+            </a>
+            <a href="paiement.html?service=Site+WordPress+-+Standard#paiement" class="tier-card">
+              <div class="tier-name">Standard</div>
+              <div class="tier-price">100 000 FCFA</div>
+              <div class="tier-usd">≈ 165 USD</div>
+            </a>
+            <a href="paiement.html?service=Site+WordPress+-+Premium#paiement" class="tier-card premium">
+              <div class="tier-name">Premium</div>
+              <div class="tier-price">200 000 FCFA</div>
+              <div class="tier-usd">≈ 330 USD</div>
+            </a>
+          </div>
+        </div>
+        <div class="offer-visual">
+          <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+        </div>
+      </div>
+
+      <div class="offer-row reveal">
+        <div>
+          <div class="offer-idx">Offre — 03</div>
+          <h3 class="offer-title">E-commerce Shopify</h3>
+          <p class="offer-text">Lancez votre boutique en ligne sans complications techniques.</p>
+          <ul class="offer-list">
+            <li>Création de boutique Shopify (thème, pages, configuration)</li>
+            <li>Intégration de produits (photos, descriptions, prix)</li>
+            <li>Accompagnement pour l'importation de produits</li>
+          </ul>
+          <div class="tiers">
+            <a href="paiement.html?service=Boutique+Shopify+-+Basic#paiement" class="tier-card">
+              <div class="tier-name">Basic</div>
+              <div class="tier-price">70 000 FCFA</div>
+              <div class="tier-usd">≈ 115 USD</div>
+            </a>
+            <a href="paiement.html?service=Boutique+Shopify+-+Premium#paiement" class="tier-card premium">
+              <div class="tier-name">Premium</div>
+              <div class="tier-price">160 000 FCFA</div>
+              <div class="tier-usd">≈ 265 USD</div>
+            </a>
+          </div>
+        </div>
+        <div class="offer-visual">
+          <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M6 2 L6 22 M18 2 L18 22 M3 8 L21 8 M3 16 L21 16"/></svg></div>
+        </div>
+      </div>
+
+      <div class="offer-row reveal">
+        <div>
+          <div class="offer-idx">Offre — 04</div>
+          <h3 class="offer-title">Publicités Facebook / Meta Ads</h3>
+          <p class="offer-text">Atteignez les bonnes personnes au bon moment grâce à des campagnes ciblées et suivies.</p>
+          <ul class="offer-list">
+            <li>Création de campagne (ciblage, visuel, texte publicitaire)</li>
+            <li>Gestion et suivi de performance sur plusieurs jours</li>
+            <li>Rapport de résultats et ajustements</li>
+          </ul>
+          <div class="tiers">
+            <a href="paiement.html?service=Publicit%C3%A9s+Facebook+-+Basic#paiement" class="tier-card">
+              <div class="tier-name">Basic</div>
+              <div class="tier-price">20 000 FCFA</div>
+              <div class="tier-usd">≈ 35 USD</div>
+            </a>
+            <a href="paiement.html?service=Publicit%C3%A9s+Facebook+-+Premium#paiement" class="tier-card premium">
+              <div class="tier-name">Premium</div>
+              <div class="tier-price">60 000 FCFA</div>
+              <div class="tier-usd">≈ 100 USD</div>
+            </a>
+          </div>
+        </div>
+        <div class="offer-visual">
+          <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 17l5-5 4 4 8-8"/></svg></div>
+        </div>
+      </div>
+
+      <div class="offer-row reveal">
+        <div>
+          <div class="offer-idx">Offre — 05</div>
+          <h3 class="offer-title">Automatisation IA</h3>
+          <p class="offer-text">Gagnez du temps et restez réactif en automatisant les tâches répétitives de votre business.</p>
+          <ul class="offer-list">
+            <li>Chatbot WhatsApp/Messenger (FAQ, prise de commande)</li>
+            <li>Automatisation de publications réseaux sociaux</li>
+            <li>Workflows business (relances clients, rapports)</li>
+          </ul>
+          <div class="tiers">
+            <a href="paiement.html?service=Automatisation+IA+-+Basic#paiement" class="tier-card">
+              <div class="tier-name">Basic</div>
+              <div class="tier-price">35 000 FCFA</div>
+              <div class="tier-usd">≈ 60 USD</div>
+            </a>
+            <a href="paiement.html?service=Automatisation+IA+-+Premium#paiement" class="tier-card premium">
+              <div class="tier-name">Premium</div>
+              <div class="tier-price">110 000 FCFA</div>
+              <div class="tier-usd">≈ 180 USD</div>
+            </a>
+          </div>
+        </div>
+        <div class="offer-visual">
+          <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
+        </div>
+      </div>
+
+      <div class="offer-row reveal">
+        <div>
+          <div class="offer-idx">Offre — 06</div>
+          <h3 class="offer-title">Contenu &amp; Ebooks</h3>
+          <p class="offer-text">Du contenu professionnel rédigé et structuré, assisté par les meilleurs outils d'IA.</p>
+          <ul class="offer-list">
+            <li>Articles et rédaction web optimisés</li>
+            <li>Ebooks et guides complets (15 à 30 pages, design inclus)</li>
+          </ul>
+          <div class="tiers">
+            <a href="paiement.html?service=Contenu+%26+Ebooks+-+Basic#paiement" class="tier-card">
+              <div class="tier-name">Basic (article)</div>
+              <div class="tier-price">6 000 FCFA</div>
+              <div class="tier-usd">≈ 10 USD</div>
+            </a>
+            <a href="paiement.html?service=Contenu+%26+Ebooks+-+Premium#paiement" class="tier-card premium">
+              <div class="tier-name">Premium (ebook)</div>
+              <div class="tier-price">50 000 FCFA</div>
+              <div class="tier-usd">≈ 85 USD</div>
+            </a>
+          </div>
+        </div>
+        <div class="offer-visual">
+          <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        </div>
+      </div>
+
+      <div class="offer-row reveal" style="border-bottom:none;">
+        <div>
+          <div class="offer-idx">Offre — 07</div>
+          <h3 class="offer-title">Service technique</h3>
+          <p class="offer-text">Un dépannage rapide et fiable pour garder votre ordinateur opérationnel.</p>
+          <ul class="offer-list">
+            <li>Réinstallation Windows (formatage + drivers)</li>
+            <li>Installation de logiciels essentiels (bureau, antivirus...)</li>
+          </ul>
+          <div class="tiers">
+            <a href="paiement.html?service=Service+technique+-+Basic#paiement" class="tier-card">
+              <div class="tier-name">Basic</div>
+              <div class="tier-price">6 000 FCFA</div>
+            </a>
+            <a href="paiement.html?service=Service+technique+-+Premium#paiement" class="tier-card premium">
+              <div class="tier-name">Premium</div>
+              <div class="tier-price">12 000 FCFA</div>
+            </a>
+          </div>
+        </div>
+        <div class="offer-visual">
+          <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Portfolio</div>
+        <h2>Réalisations &amp; projets en cours</h2>
+      </div>
+    </div>
+    <div class="proof reveal">
+      <div class="proof-cell">
+        <p class="proof-quote">Identité visuelle complète en préparation pour une petite entreprise locale.</p>
+        <div class="proof-who"><b>Logo &amp; charte graphique</b><br><span class="tag-soon">Bientôt disponible</span></div>
+      </div>
+      <div class="proof-cell">
+        <p class="proof-quote">Boutique Shopify en cours de lancement pour un projet d'e-commerce/import.</p>
+        <div class="proof-who"><b>Boutique Shopify</b><br><span class="tag-soon">Bientôt disponible</span></div>
+      </div>
+      <div class="proof-cell">
+        <p class="proof-quote">Le site que vous consultez actuellement — conçu, codé et automatisé de A à Z.</p>
+        <div class="proof-who"><b><a href="https://www.facebook.com/dtacademy2" target="_blank" class="brand-link">Fridoce Design and Trade Center</a></b><br><span class="tag-soon">En ligne</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><a href="https://www.facebook.com/dtacademy2" target="_blank" class="brand-link">Fridoce Design and Trade Center</a> — Cotonou, Bénin — © 2026</div>
+    <div class="mono" style="display:flex; gap:1.6rem;"><a href="index.html" style="text-decoration:none;">Accueil</a><a href="paiement.html#contact" style="text-decoration:none;">Contact</a></div>
+  </div>
+</footer>
+
+<script src="dynamic.js"></script>
+</body>
+</html>
