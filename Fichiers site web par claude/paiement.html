@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fridoce Design and Trade Center — Paiement &amp; Contact</title>
+  <meta name="description" content="Finalisez votre commande de service digital chez Fridoce. Paiement sécurisé FedaPay (Mobile Money MTN &amp; Moov, carte bancaire internationale). Contact direct par WhatsApp ou formulaire." />
+  <meta name="keywords" content="paiement, contact, commande service, FedaPay, WhatsApp, Fridoce" />
+
+  <!-- Open Graph — URL corrigée -->
+  <meta property="og:title" content="Paiement &amp; Contact — Fridoce Design and Trade Center" />
+  <meta property="og:description" content="Complétez votre commande de service digital. Paiement sécurisé Mobile Money &amp; carte internationale. Réponse rapide garantie." />
+  <meta property="og:image" content="https://fdtc-website.vercel.app/assets/logo.png" />
+  <meta property="og:url" content="https://fdtc-website.vercel.app/paiement.html" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Paiement &amp; Contact — Fridoce" />
+  <meta name="twitter:description" content="Finalisez votre commande de service digital avec paiement sécurisé." />
+  <meta name="twitter:image" content="https://fdtc-website.vercel.app/assets/logo.png" />
+
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G6QQ1XGPJY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G6QQ1XGPJY');
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar" role="navigation" aria-label="Navigation principale">
+    <a href="index.html" class="nav-logo" aria-label="Fridoce Design and Trade Center — Accueil">
+      <img src="assets/logo_icon.png" alt="Logo Fridoce" width="36" height="36" />
+      Fridoce Design and Trade Center
+    </a>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="services.html#portfolio">Portfolio</a></li>
+      <li><a href="index.html#apropos">À propos</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-primary nav-cta">Contact</a>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <p class="section-label">Paiement &amp; Contact</p>
+    <h1>Finalisons votre commande</h1>
+  </section>
+
+  <!-- ═══════════════════════
+       SECTION PAIEMENT
+  ═══════════════════════ -->
+  <section class="payment-section" id="paiement" aria-labelledby="payment-title">
+
+    <!-- RÉCAPITULATIF COMMANDE -->
+    <div class="order-recap" id="order-recap">
+      <h2 id="payment-title">Vous allez payer pour :</h2>
+      <div class="recap-box">
+        <div class="recap-row">
+          <span class="recap-label">Service</span>
+          <span class="recap-value" id="recap-service">—</span>
+        </div>
+        <div class="recap-row">
+          <span class="recap-label">Montant</span>
+          <span class="recap-value recap-price">
+            <span id="recap-fcfa">—</span>
+            <span id="recap-usd" class="recap-usd-badge"></span>
+          </span>
+        </div>
+        <div class="recap-row recap-note-row">
+          <span class="recap-note">⚠️ Acompte de 50% à la commande, solde à la livraison. Paiements &lt; 50 000 FCFA : paiement intégral requis.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORMULAIRE PAIEMENT -->
+    <div class="payment-form-block">
+      <h3>Paiement sécurisé</h3>
+      <p class="payment-sub">Indiquez le montant convenu, votre email, puis cliquez sur Payer.</p>
+
+      <!-- BADGES PAIEMENT ACCEPTÉ -->
+      <div class="payment-methods" aria-label="Modes de paiement acceptés">
+        <span class="payment-badge">📱 MTN Mobile Money</span>
+        <span class="payment-badge">📱 Moov Money</span>
+        <span class="payment-badge">💳 Visa / Mastercard</span>
+        <span class="payment-badge intl">🌍 Carte internationale acceptée</span>
+      </div>
+
+      <div class="form-group">
+        <label for="service-select">Service</label>
+        <select id="service-select" name="service">
+          <option value="">— Sélectionnez un service —</option>
+          <optgroup label="Automatisation IA">
+            <option value="Chatbot WhatsApp / Messenger — 45 000 FCFA">Chatbot WhatsApp / Messenger — 45 000 FCFA</option>
+            <option value="Auto-réseaux sociaux — 35 000 FCFA / mois">Auto-réseaux sociaux — 35 000 FCFA / mois</option>
+            <option value="Automatisation business — 60 000 FCFA">Automatisation business — 60 000 FCFA</option>
+            <option value="Pack Business Autopilote — 120 000 FCFA">Pack Business Autopilote — 120 000 FCFA</option>
+          </optgroup>
+          <optgroup label="Graphisme">
+            <option value="Logo simple — 15 000 FCFA">Logo simple — 15 000 FCFA</option>
+            <option value="Pack Identité visuelle — 40 000 FCFA">Pack Identité visuelle — 40 000 FCFA</option>
+            <option value="Affiche / Flyer — 7 000 FCFA">Affiche / Flyer — 7 000 FCFA</option>
+            <option value="Pack 10 visuels réseaux — 45 000 FCFA">Pack 10 visuels réseaux — 45 000 FCFA</option>
+            <option value="Abonnement mensuel graphisme — 70 000 FCFA">Abonnement mensuel graphisme — 70 000 FCFA</option>
+          </optgroup>
+          <optgroup label="Sites WordPress">
+            <option value="Site vitrine 1 page — 55 000 FCFA">Site vitrine 1 page — 55 000 FCFA</option>
+            <option value="Site vitrine complet — 110 000 FCFA">Site vitrine complet — 110 000 FCFA</option>
+            <option value="Site e-commerce WooCommerce — 200 000 FCFA">Site e-commerce WooCommerce — 200 000 FCFA</option>
+          </optgroup>
+          <optgroup label="E-commerce Shopify">
+            <option value="Création boutique Shopify — 80 000 FCFA">Création boutique Shopify — 80 000 FCFA</option>
+            <option value="Intégration produits Shopify — 30 000 FCFA">Intégration produits Shopify — 30 000 FCFA</option>
+            <option value="Pack Lancement Shopify complet — 150 000 FCFA">Pack Lancement Shopify complet — 150 000 FCFA</option>
+            <option value="Guide Importation — 20 000 FCFA">Guide Importation — 20 000 FCFA</option>
+          </optgroup>
+          <optgroup label="Publicités Facebook">
+            <option value="Création campagne Facebook — 27 000 FCFA">Création campagne Facebook — 27 000 FCFA</option>
+            <option value="Gestion pub 1 semaine — 47 000 FCFA">Gestion pub 1 semaine — 47 000 FCFA</option>
+            <option value="Pack pub mensuel — 95 000 FCFA">Pack pub mensuel — 95 000 FCFA</option>
+          </optgroup>
+          <optgroup label="Contenu & Rédaction">
+            <option value="Article rédaction web — 7 000 FCFA">Article rédaction web — 7 000 FCFA</option>
+            <option value="Ebook / Guide complet — 60 000 FCFA">Ebook / Guide complet — 60 000 FCFA</option>
+          </optgroup>
+          <optgroup label="Packs combinés">
+            <option value="Pack Starter Identité & Présence — 85 000 FCFA">Pack Starter Identité &amp; Présence — 85 000 FCFA</option>
+            <option value="Pack Business Vendre en ligne — 199 000 FCFA">Pack Business Vendre en ligne — 199 000 FCFA</option>
+            <option value="Pack Premium Tout déléguer — 299 000 FCFA">Pack Premium Tout déléguer — 299 000 FCFA</option>
+          </optgroup>
+          <optgroup label="Service technique (local)">
+            <option value="Réinstallation Windows — 7 000 FCFA">Réinstallation Windows — 7 000 FCFA</option>
+            <option value="Réinstallation Windows + logiciels — 12 000 FCFA">Réinstallation Windows + logiciels — 12 000 FCFA</option>
+          </optgroup>
+          <option value="Autre (préciser dans le contact)">Autre / Devis personnalisé</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="payment-amount">Montant à payer (FCFA)</label>
+        <input type="number" id="payment-amount" name="amount" placeholder="Ex : 45000" min="1000" />
+      </div>
+
+      <div class="form-group">
+        <label for="payment-email">Votre email</label>
+        <input type="email" id="payment-email" name="email" placeholder="votre@email.com" />
+      </div>
+
+      <button class="btn btn-primary btn-pay" id="pay-btn" onclick="gtag('event','click_pay_button',{event_category:'conversion'})">
+        🔒 Payer maintenant
+      </button>
+      <p class="payment-secure-note">Paiement sécurisé via FedaPay · Aucune donnée bancaire stockée sur ce site</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════
+       SECTION CONTACT
+  ═══════════════════════ -->
+  <section class="contact-section" id="contact" aria-labelledby="contact-title">
+    <h2 id="contact-title">Discutons de votre projet</h2>
+
+    <div class="contact-grid">
+      <div class="contact-form-block">
+        <form id="contact-form" novalidate>
+          <div class="form-group">
+            <label for="contact-name">Nom complet <span class="required" aria-hidden="true">*</span></label>
+            <input type="text" id="contact-name" name="name" placeholder="Votre nom" required autocomplete="name" />
+            <span class="field-error" id="error-name" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="form-group">
+            <label for="contact-phone">Téléphone / WhatsApp <span class="required" aria-hidden="true">*</span></label>
+            <input type="tel" id="contact-phone" name="phone" placeholder="+229 XX XX XX XX" required autocomplete="tel" />
+            <span class="field-error" id="error-phone" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="form-group">
+            <label for="contact-service">Service souhaité</label>
+            <select id="contact-service" name="service">
+              <option value="">— Sélectionner —</option>
+              <option value="Automatisation IA">Automatisation IA</option>
+              <option value="Graphisme">Graphisme</option>
+              <option value="Site WordPress">Site WordPress</option>
+              <option value="Boutique Shopify">Boutique Shopify</option>
+              <option value="Publicités Facebook">Publicités Facebook</option>
+              <option value="Contenu & Rédaction">Contenu &amp; Rédaction</option>
+              <option value="Service technique">Service technique</option>
+              <option value="Pack combiné">Pack combiné</option>
+              <option value="Devis personnalisé">Devis personnalisé</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Message <span class="required" aria-hidden="true">*</span></label>
+            <textarea id="contact-message" name="message" rows="4" placeholder="Décrivez votre projet, vos besoins, votre budget approximatif..." required></textarea>
+            <span class="field-error" id="error-message" role="alert" aria-live="polite"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="contact-submit">
+            Envoyer la demande
+          </button>
+
+          <!-- Message succès -->
+          <div class="form-success" id="form-success" role="alert" aria-live="polite" style="display:none;">
+            ✅ Votre message a été envoyé ! Je vous réponds sous 2 heures (jours ouvrables).
+          </div>
+          <!-- Message erreur globale -->
+          <div class="form-error-global" id="form-error-global" role="alert" aria-live="polite" style="display:none;">
+            ⚠️ Veuillez corriger les erreurs indiquées avant d'envoyer.
+          </div>
+        </form>
+      </div>
+
+      <div class="contact-info-block">
+        <div class="contact-info-card">
+          <h3>Nous trouver</h3>
+          <ul class="contact-info-list">
+            <li>📍 Cotonou, Bénin</li>
+            <li>
+              <a href="https://wa.me/22995250774?text=Bonjour%2C%20je%20vous%20ai%20découvert%20grâce%20à%20votre%20site%20web%20et%20j%27aimerais%20discuter%20avec%20vous."
+                 target="_blank" rel="noopener noreferrer">
+                📞 +229 95 25 07 74 (WhatsApp)
+              </a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/dtacademy2" target="_blank" rel="noopener noreferrer">
+                🏢 Fridoce Design and Trade Center
+              </a>
+            </li>
+          </ul>
+          <div class="contact-response-time">
+            <strong>⚡ Temps de réponse : &lt; 2 heures</strong><br />
+            Jours ouvrables (lun–ven)<br />
+            Accompagnement en français &amp; anglais
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════
+       FAQ & CONDITIONS
+  ═══════════════════════ -->
+  <section class="faq-section" aria-labelledby="faq-title">
+    <h2 id="faq-title">FAQ, conditions &amp; politiques</h2>
+    <div class="faq-tabs" role="tablist">
+      <button class="faq-tab active" role="tab" aria-selected="true" aria-controls="tab-faq" id="btn-faq">FAQ</button>
+      <button class="faq-tab" role="tab" aria-selected="false" aria-controls="tab-cgv" id="btn-cgv">Conditions générales</button>
+      <button class="faq-tab" role="tab" aria-selected="false" aria-controls="tab-privacy" id="btn-privacy">Politique de confidentialité</button>
+    </div>
+
+    <div id="tab-faq" class="faq-tab-content active" role="tabpanel" aria-labelledby="btn-faq">
+      <details class="faq-item"><summary>Comment se passe le paiement ?</summary><p>Pour les prestations de moins de 50 000 FCFA, le paiement se fait intégralement avant le démarrage. Pour les projets plus importants, un acompte de 50% est demandé à la commande, et le solde est dû à la livraison. Paiement via Mobile Money (MTN, Moov) ou carte bancaire internationale via FedaPay.</p></details>
+      <details class="faq-item"><summary>Quels sont les délais de livraison ?</summary><p>Cela dépend du service : de 1 jour pour un dépannage technique à 35 jours pour un pack premium complet. Le délai précis est indiqué sur chaque service et confirmé après votre commande.</p></details>
+      <details class="faq-item"><summary>Combien de révisions sont incluses ?</summary><p>Chaque prestation inclut 2 révisions gratuites. Toute modification supplémentaire après validation finale est facturée séparément selon sa complexité.</p></details>
+      <details class="faq-item"><summary>Travaillez-vous avec des clients hors du Bénin ?</summary><p>Oui. Les paiements internationaux sont acceptés via FedaPay (carte bancaire Visa/Mastercard). Le service technique local reste uniquement disponible à Cotonou.</p></details>
+      <details class="faq-item"><summary>Puis-je annuler ma commande ?</summary><p>Avant le début du travail, l'acompte est remboursé à 80%. Après le début du travail, l'acompte n'est pas remboursable mais le travail déjà réalisé vous est livré.</p></details>
+      <details class="faq-item"><summary>Quel est le temps de réponse ?</summary><p>Je réponds en moins de 2 heures pendant les jours ouvrables (lun–ven). Les demandes reçues en fin d'après-midi reçoivent une réponse le lendemain matin.</p></details>
+    </div>
+
+    <div id="tab-cgv" class="faq-tab-content" role="tabpanel" aria-labelledby="btn-cgv" hidden>
+      <div class="legal-content">
+        <h4>1. Objet</h4><p>Les présentes conditions générales encadrent toute prestation réalisée par Fridoce Design and Trade Center.</p>
+        <h4>2. Modalités de paiement</h4><p>Les prestations inférieures à 50 000 FCFA sont payables intégralement avant le démarrage. Les prestations supérieures requièrent un acompte de 50% à la commande, le solde étant payable à la livraison.</p>
+        <h4>3. Délais</h4><p>Les délais indiqués démarrent à réception de l'acompte et de l'ensemble des éléments nécessaires fournis par le client. Des retards peuvent survenir en cas de demandes de révision substantielles.</p>
+        <h4>4. Révisions et modifications</h4><p>Chaque prestation inclut 2 révisions gratuites. Toute révision additionnelle fera l'objet d'une facturation complémentaire communiquée avant exécution.</p>
+        <h4>5. Annulation et remboursement</h4><p>En cas d'annulation avant le début de la prestation, l'acompte est remboursé à hauteur de 80%. En cas d'annulation après le début du travail, l'acompte n'est pas remboursable.</p>
+        <h4>6. Propriété intellectuelle</h4><p>Les fichiers finaux sont transférés en pleine propriété au client après paiement intégral. Fridoce Design and Trade Center se réserve le droit de les utiliser comme portfolio si le client l'autorise.</p>
+        <h4>7. Responsabilité</h4><p>Fridoce Design and Trade Center s'engage à exécuter chaque prestation avec diligence. Le client reste responsable de la conformité légale du contenu qu'il fournit ou demande.</p>
+      </div>
+    </div>
+
+    <div id="tab-privacy" class="faq-tab-content" role="tabpanel" aria-labelledby="btn-privacy" hidden>
+      <div class="legal-content">
+        <h4>1. Données collectées</h4><p>Lors d'une prise de contact ou commande : nom, téléphone, email et détails du projet transmis volontairement.</p>
+        <h4>2. Utilisation des données</h4><p>Ces informations sont utilisées exclusivement pour répondre aux demandes, exécuter les prestations et assurer le suivi client. Elles ne sont jamais communiquées à des tiers.</p>
+        <h4>3. Paiements</h4><p>Les paiements sont traités directement par FedaPay. Fridoce Design and Trade Center n'a pas accès aux données bancaires complètes du client.</p>
+        <h4>4. Conservation</h4><p>Les données sont conservées le temps nécessaire à la bonne exécution de la prestation, puis supprimées ou archivées de manière sécurisée.</p>
+        <h4>5. Droits du client</h4><p>Le client peut demander l'accès, la rectification ou la suppression de ses données en contactant directement Fridoce Design and Trade Center via WhatsApp ou email.</p>
+        <h4>6. Analytics</h4><p>Le site utilise Google Analytics (GA4) pour mesurer les visites de manière anonymisée. Aucun cookie publicitaire n'est utilisé.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <a href="https://www.facebook.com/dtacademy2" rel="noopener noreferrer" target="_blank">Fridoce Design and Trade Center</a>
+    — Cotonou, Bénin — © 2026
+  </footer>
+
+  <!-- BOUTON WHATSAPP STICKY -->
+  <a href="https://wa.me/22995250774?text=Bonjour%2C%20j%27aimerais%20en%20savoir%20plus%20sur%20vos%20services."
+     class="sticky-whatsapp"
+     aria-label="Nous contacter sur WhatsApp"
+     target="_blank"
+     rel="noopener noreferrer"
+     onclick="gtag('event','click_whatsapp_sticky',{event_category:'conversion'})">
+    💬 Nous contacter
+  </a>
+
+  <!-- FedaPay SDK -->
+  <script src="https://cdn.fedapay.com/checkout.js?v=1.1.7"></script>
+  <script src="dynamic.js"></script>
+</body>
+</html>

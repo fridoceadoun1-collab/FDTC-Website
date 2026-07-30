@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fridoce Design and Trade Center — Services &amp; Tarifs</title>
+  <meta name="description" content="Découvrez nos services : graphisme, sites WordPress, e-commerce Shopify, publicités Facebook, automatisation IA, contenu web et support technique. Tarifs fixes depuis Cotonou." />
+  <meta name="keywords" content="services digitaux, graphisme, WordPress, Shopify, e-commerce, IA, publicités Meta, Cotonou" />
+
+  <!-- Open Graph — URL corrigée -->
+  <meta property="og:title" content="Nos Services — Fridoce Design and Trade Center" />
+  <meta property="og:description" content="7 services digitaux complets : graphisme, sites, e-commerce, automatisation IA, publicités. Tarifs fixes transparents." />
+  <meta property="og:image" content="https://fdtc-website.vercel.app/assets/logo.png" />
+  <meta property="og:url" content="https://fdtc-website.vercel.app/services.html" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Services — Fridoce Design and Trade Center" />
+  <meta name="twitter:description" content="Graphisme, sites web, e-commerce, IA, publicités. Solutions digitales complètes." />
+  <meta name="twitter:image" content="https://fdtc-website.vercel.app/assets/logo.png" />
+
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G6QQ1XGPJY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G6QQ1XGPJY');
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar" role="navigation" aria-label="Navigation principale">
+    <a href="index.html" class="nav-logo" aria-label="Fridoce Design and Trade Center — Accueil">
+      <img src="assets/logo_icon.png" alt="Logo Fridoce" width="36" height="36" />
+      Fridoce Design and Trade Center
+    </a>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html" aria-current="page">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="index.html#apropos">À propos</a></li>
+    </ul>
+    <a href="paiement.html#contact" class="btn btn-primary nav-cta">Contact</a>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <p class="section-label">Nos services</p>
+    <h1>Des solutions digitales complètes,<br /><em>pensées pour votre activité</em></h1>
+    <p class="page-header-sub">Tarifs fixes et transparents — paiement Mobile Money, carte bancaire internationale acceptée</p>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 1 — SERVICES INDIVIDUELS
+  ═══════════════════════════════════════ -->
+  <section class="services-section" aria-labelledby="services-title">
+    <h2 id="services-title" class="section-heading">Services à la carte</h2>
+
+    <!-- 01 AUTOMATISATION IA -->
+    <div class="service-block" id="service-automatisation">
+      <div class="service-block-header">
+        <span class="service-number" aria-hidden="true">01</span>
+        <div>
+          <h3>Automatisation IA <span class="badge-popular">⭐ Le plus demandé</span></h3>
+          <p class="service-tagline">Gagnez du temps et restez réactif en automatisant les tâches répétitives de votre business.</p>
+        </div>
+      </div>
+      <div class="service-offers-grid">
+        <div class="offer-card">
+          <div class="offer-name">Chatbot WhatsApp / Messenger</div>
+          <div class="offer-desc">Réponses automatiques, FAQ, prise de commande simple</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ 3–5 jours</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">45 000 FCFA</span>
+            <span class="price-usd">/ 70 $</span>
+          </div>
+          <a href="paiement.html?service=Chatbot+WhatsApp&montant=45000&usd=70#paiement" class="btn btn-order" onclick="gtag('event','click_order',{event_category:'conversion',event_label:'Chatbot WhatsApp'})">Commander →</a>
+        </div>
+        <div class="offer-card">
+          <div class="offer-name">Auto-réseaux sociaux</div>
+          <div class="offer-desc">Planification et publication automatique (1 mois)</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ 2–3 jours setup</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">35 000 FCFA</span>
+            <span class="price-usd">/ 55 $ <small>/mois</small></span>
+          </div>
+          <a href="paiement.html?service=Auto-réseaux+sociaux&montant=35000&usd=55#paiement" class="btn btn-order" onclick="gtag('event','click_order',{event_category:'conversion',event_label:'Auto réseaux'})">Commander →</a>
+        </div>
+        <div class="offer-card">
+          <div class="offer-name">Automatisation business</div>
+          <div class="offer-desc">Workflows simples : relances clients, rapports automatiques</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ 5–7 jours</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">60 000 FCFA</span>
+            <span class="price-usd">/ 90 $</span>
+          </div>
+          <a href="paiement.html?service=Automatisation+business&montant=60000&usd=90#paiement" class="btn btn-order" onclick="gtag('event','click_order',{event_category:'conversion',event_label:'Automatisation business'})">Commander →</a>
+        </div>
+        <div class="offer-card offer-card-pack">
+          <div class="badge-pack-mini">Pack</div>
+          <div class="offer-name">Pack Business Autopilote</div>
+          <div class="offer-desc">Chatbot + auto-réseaux + 1 workflow business</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ 7–10 jours</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">120 000 FCFA</span>
+            <span class="price-usd">/ 195 $</span>
+          </div>
+          <a href="paiement.html?service=Pack+Business+Autopilote&montant=120000&usd=195#paiement" class="btn btn-order" onclick="gtag('event','click_order',{event_category:'conversion',event_label:'Pack Business Autopilote'})">Commander →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 GRAPHISME -->
+    <div class="service-block" id="service-graphisme">
+      <div class="service-block-header">
+        <span class="service-number" aria-hidden="true">02</span>
+        <div>
+          <h3>Graphisme</h3>
+          <p class="service-tagline">Une identité visuelle forte est la première impression que vos clients gardent de votre marque.</p>
+        </div>
+      </div>
+      <div class="service-offers-grid">
+        <div class="offer-card">
+          <div class="offer-name">Logo simple</div>
+          <div class="offer-desc">2 propositions + fichiers finaux (PNG, SVG, PDF)</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ 2–3 jours</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">15 000 FCFA</span>
+            <span class="price-usd">/ 25 $</span>
+          </div>
+          <a href="paiement.html?service=Logo+simple&montant=15000&usd=25#paiement" class="btn btn-order">Commander →</a>
+        </div>
+        <div class="offer-card">
+          <div class="offer-name">Pack Identité visuelle</div>
+          <div class="offer-desc">Logo + charte couleurs &amp; typo + carte de visite</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ 4–6 jours</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">40 000 FCFA</span>
+            <span class="price-usd">/ 65 $</span>
+          </div>
+          <a href="paiement.html?service=Pack+Identité+visuelle&montant=40000&usd=65#paiement" class="btn btn-order">Commander →</a>
+        </div>
+        <div class="offer-card">
+          <div class="offer-name">Affiche / Flyer</div>
+          <div class="offer-desc">1 visuel publicitaire prêt à imprimer ou diffuser</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ 1–2 jours</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">7 000 FCFA</span>
+            <span class="price-usd">/ 12 $</span>
+          </div>
+          <a href="paiement.html?service=Affiche+Flyer&montant=7000&usd=12#paiement" class="btn btn-order">Commander →</a>
+        </div>
+        <div class="offer-card">
+          <div class="offer-name">Pack 10 visuels réseaux</div>
+          <div class="offer-desc">Posts + stories cohérents avec la marque</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ 3–5 jours</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">45 000 FCFA</span>
+            <span class="price-usd">/ 70 $</span>
+          </div>
+          <a href="paiement.html?service=Pack+10+visuels+réseaux&montant=45000&usd=70#paiement" class="btn btn-order">Commander →</a>
+        </div>
+        <div class="offer-card">
+          <div class="offer-name">Abonnement mensuel</div>
+          <div class="offer-desc">15 à 20 visuels par mois (posts + affiches)</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ Livraison hebdomadaire</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">70 000 FCFA</span>
+            <span class="price-usd">/ 110 $ <small>/mois</small></span>
+          </div>
+          <a href="paiement.html?service=Abonnement+mensuel+graphisme&montant=70000&usd=110#paiement" class="btn btn-order">Commander →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 SITES WORDPRESS -->
+    <div class="service-block" id="service-wordpress">
+      <div class="service-block-header">
+        <span class="service-number" aria-hidden="true">03</span>
+        <div>
+          <h3>Sites WordPress</h3>
+          <p class="service-tagline">Un site professionnel qui présente votre activité 24h/24, accessible à tous vos clients, où qu'ils soient.</p>
+        </div>
+      </div>
+      <div class="service-offers-grid">
+        <div class="offer-card">
+          <div class="offer-name">Site vitrine 1 page</div>
+          <div class="offer-desc">Landing page simple et efficace, optimisée mobile</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ 5–7 jours</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">55 000 FCFA</span>
+            <span class="price-usd">/ 90 $</span>
+          </div>
+          <a href="paiement.html?service=Site+vitrine+1+page&montant=55000&usd=90#paiement" class="btn btn-order">Commander →</a>
+        </div>
+        <div class="offer-card">
+          <div class="offer-name">Site vitrine complet</div>
+          <div class="offer-desc">4 à 6 pages : accueil, services, portfolio, contact</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ 10–14 jours</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">110 000 FCFA</span>
+            <span class="price-usd">/ 175 $</span>
+          </div>
+          <a href="paiement.html?service=Site+vitrine+complet&montant=110000&usd=175#paiement" class="btn btn-order">Commander →</a>
+        </div>
+        <div class="offer-card">
+          <div class="offer-name">Site e-commerce WooCommerce</div>
+          <div class="offer-desc">Boutique complète avec système de paiement intégré</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ 14–21 jours</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">200 000 FCFA</span>
+            <span class="price-usd">/ 330 $</span>
+          </div>
+          <a href="paiement.html?service=Site+WooCommerce&montant=200000&usd=330#paiement" class="btn btn-order">Commander →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 E-COMMERCE SHOPIFY -->
+    <div class="service-block" id="service-shopify">
+      <div class="service-block-header">
+        <span class="service-number" aria-hidden="true">04</span>
+        <div>
+          <h3>E-commerce Shopify</h3>
+          <p class="service-tagline">Lancez votre boutique en ligne sans complications techniques, de la création à la mise en vente de vos premiers produits.</p>
+        </div>
+      </div>
+      <div class="service-offers-grid">
+        <div class="offer-card">
+          <div class="offer-name">Création boutique Shopify</div>
+          <div class="offer-desc">Thème, pages essentielles, configuration complète</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ 7–10 jours</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">80 000 FCFA</span>
+            <span class="price-usd">/ 130 $</span>
+          </div>
+          <a href="paiement.html?service=Création+boutique+Shopify&montant=80000&usd=130#paiement" class="btn btn-order">Commander →</a>
+        </div>
+        <div class="offer-card">
+          <div class="offer-name">Intégration produits</div>
+          <div class="offer-desc">Jusqu'à 20 produits : photos, descriptions, prix</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ 3–5 jours</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">30 000 FCFA</span>
+            <span class="price-usd">/ 50 $</span>
+          </div>
+          <a href="paiement.html?service=Intégration+produits+Shopify&montant=30000&usd=50#paiement" class="btn btn-order">Commander →</a>
+        </div>
+        <div class="offer-card offer-card-pack">
+          <div class="badge-pack-mini">Pack</div>
+          <div class="offer-name">Pack Lancement complet</div>
+          <div class="offer-desc">Boutique + produits + 1ère pub Facebook de lancement</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ 12–18 jours</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">150 000 FCFA</span>
+            <span class="price-usd">/ 245 $</span>
+          </div>
+          <a href="paiement.html?service=Pack+Lancement+Shopify&montant=150000&usd=245#paiement" class="btn btn-order">Commander →</a>
+        </div>
+        <div class="offer-card">
+          <div class="offer-name">Guide Importation</div>
+          <div class="offer-desc">Guide pratique pour apprendre à importer des produits</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ Livraison immédiate</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">20 000 FCFA</span>
+            <span class="price-usd">/ 30 $</span>
+          </div>
+          <a href="paiement.html?service=Guide+Importation&montant=20000&usd=30#paiement" class="btn btn-order">Commander →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 PUBLICITÉS FACEBOOK -->
+    <div class="service-block" id="service-ads">
+      <div class="service-block-header">
+        <span class="service-number" aria-hidden="true">05</span>
+        <div>
+          <h3>Publicités Facebook / Meta Ads</h3>
+          <p class="service-tagline">Atteignez les bonnes personnes au bon moment. <em>Budget pub géré par le client sur son propre compte Meta.</em></p>
+        </div>
+      </div>
+      <div class="service-offers-grid">
+        <div class="offer-card">
+          <div class="offer-name">Création de campagne</div>
+          <div class="offer-desc">Ciblage, visuel publicitaire et texte persuasif</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ 2–3 jours</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">27 000 FCFA</span>
+            <span class="price-usd">/ 45 $</span>
+          </div>
+          <a href="paiement.html?service=Création+campagne+Facebook&montant=27000&usd=45#paiement" class="btn btn-order">Commander →</a>
+        </div>
+        <div class="offer-card">
+          <div class="offer-name">Gestion / suivi (1 semaine)</div>
+          <div class="offer-desc">Création + ajustements + rapport de performance</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ 7 jours</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">47 000 FCFA</span>
+            <span class="price-usd">/ 75 $</span>
+          </div>
+          <a href="paiement.html?service=Gestion+pub+1+semaine&montant=47000&usd=75#paiement" class="btn btn-order">Commander →</a>
+        </div>
+        <div class="offer-card">
+          <div class="offer-name">Pack mensuel</div>
+          <div class="offer-desc">Création + gestion continue + rapport mensuel de résultats</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ 30 jours</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">95 000 FCFA</span>
+            <span class="price-usd">/ 155 $ <small>/mois</small></span>
+          </div>
+          <a href="paiement.html?service=Pack+pub+mensuel&montant=95000&usd=155#paiement" class="btn btn-order">Commander →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 CONTENU & RÉDACTION -->
+    <div class="service-block" id="service-contenu">
+      <div class="service-block-header">
+        <span class="service-number" aria-hidden="true">06</span>
+        <div>
+          <h3>Contenu &amp; Rédaction</h3>
+          <p class="service-tagline">Du contenu professionnel rédigé et structuré, assisté par les meilleurs outils d'intelligence artificielle.</p>
+        </div>
+      </div>
+      <div class="service-offers-grid">
+        <div class="offer-card">
+          <div class="offer-name">Article / Rédaction web</div>
+          <div class="offer-desc">500 à 800 mots, optimisés SEO et professionnels</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ 1–2 jours</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">7 000 FCFA</span>
+            <span class="price-usd">/ 12 $</span>
+          </div>
+          <a href="paiement.html?service=Article+rédaction+web&montant=7000&usd=12#paiement" class="btn btn-order">Commander →</a>
+        </div>
+        <div class="offer-card">
+          <div class="offer-name">Ebook / Guide complet</div>
+          <div class="offer-desc">15 à 30 pages, design + contenu inclus</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ 5–7 jours</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">60 000 FCFA</span>
+            <span class="price-usd">/ 95 $</span>
+          </div>
+          <a href="paiement.html?service=Ebook+guide+complet&montant=60000&usd=95#paiement" class="btn btn-order">Commander →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 07 SERVICE TECHNIQUE -->
+    <div class="service-block" id="service-technique">
+      <div class="service-block-header">
+        <span class="service-number" aria-hidden="true">07</span>
+        <div>
+          <h3>Service Technique</h3>
+          <p class="service-tagline">Un dépannage rapide et fiable pour garder votre ordinateur opérationnel. <em>Service local Cotonou uniquement.</em></p>
+        </div>
+      </div>
+      <div class="service-offers-grid">
+        <div class="offer-card">
+          <div class="offer-name">Réinstallation Windows</div>
+          <div class="offer-desc">Formatage complet + installation Windows + drivers</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ Même jour</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">7 000 FCFA</span>
+          </div>
+          <a href="paiement.html?service=Réinstallation+Windows&montant=7000#paiement" class="btn btn-order">Commander →</a>
+        </div>
+        <div class="offer-card">
+          <div class="offer-name">Réinstallation + Logiciels</div>
+          <div class="offer-desc">Idem + suite bureau, antivirus, logiciels essentiels</div>
+          <div class="offer-meta"><span class="offer-delay">⏱ Même jour</span></div>
+          <div class="offer-price">
+            <span class="price-fcfa">12 000 FCFA</span>
+          </div>
+          <a href="paiement.html?service=Réinstallation+Windows+logiciels&montant=12000#paiement" class="btn btn-order">Commander →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 2 — PACKS COMBINÉS
+  ═══════════════════════════════════════ -->
+  <section class="packs-section" id="packs" aria-labelledby="packs-title">
+    <div class="packs-header">
+      <p class="section-label">Offres groupées</p>
+      <h2 id="packs-title">Packs — Économisez jusqu'à 30%</h2>
+      <p class="packs-subtitle">Des combinaisons pensées pour les entrepreneurs qui veulent aller vite et loin, sans gérer plusieurs prestataires.</p>
+    </div>
+
+    <div class="packs-grid">
+
+      <!-- PACK STARTER -->
+      <div class="pack-card">
+        <div class="pack-label">Pack Starter</div>
+        <div class="pack-name">Identité &amp; Présence</div>
+        <div class="pack-tagline">Idéal pour lancer votre activité avec une image professionnelle</div>
+        <ul class="pack-includes">
+          <li>✓ Logo simple</li>
+          <li>✓ Pack Identité visuelle complète</li>
+          <li>✓ Site vitrine 1 page WordPress</li>
+          <li>✓ 5 visuels réseaux sociaux offerts</li>
+        </ul>
+        <div class="pack-saving">Valeur séparée : 110 000 FCFA</div>
+        <div class="pack-price">
+          <span class="price-fcfa">85 000 FCFA</span>
+          <span class="price-usd">/ 138 $</span>
+        </div>
+        <div class="pack-delay">⏱ Livraison en 10–14 jours</div>
+        <a href="paiement.html?service=Pack+Starter+Identité+Présence&montant=85000&usd=138#paiement" class="btn btn-primary" onclick="gtag('event','click_pack',{event_category:'conversion',event_label:'Pack Starter'})">Choisir ce pack →</a>
+      </div>
+
+      <!-- PACK BUSINESS -->
+      <div class="pack-card pack-card-featured">
+        <div class="pack-badge-top">⭐ Meilleur rapport qualité/prix</div>
+        <div class="pack-label">Pack Business</div>
+        <div class="pack-name">Vendre en ligne</div>
+        <div class="pack-tagline">Boutique, pub et automatisation pour commencer à générer des ventes</div>
+        <ul class="pack-includes">
+          <li>✓ Boutique Shopify complète</li>
+          <li>✓ Intégration 20 produits</li>
+          <li>✓ Campagne pub Facebook (création + 1 semaine)</li>
+          <li>✓ Chatbot WhatsApp automatisé</li>
+          <li>✓ Pack Identité visuelle</li>
+        </ul>
+        <div class="pack-saving">Valeur séparée : 262 000 FCFA</div>
+        <div class="pack-price">
+          <span class="price-fcfa">199 000 FCFA</span>
+          <span class="price-usd">/ 320 $</span>
+        </div>
+        <div class="pack-delay">⏱ Livraison en 18–25 jours</div>
+        <a href="paiement.html?service=Pack+Business+Vendre+en+ligne&montant=199000&usd=320#paiement" class="btn btn-primary" onclick="gtag('event','click_pack',{event_category:'conversion',event_label:'Pack Business'})">Choisir ce pack →</a>
+      </div>
+
+      <!-- PACK PREMIUM -->
+      <div class="pack-card">
+        <div class="pack-label">Pack Premium</div>
+        <div class="pack-name">Tout déléguer</div>
+        <div class="pack-tagline">Pour l'entrepreneur qui veut une présence digitale complète sans s'en occuper</div>
+        <ul class="pack-includes">
+          <li>✓ Site WordPress complet (4–6 pages)</li>
+          <li>✓ Pack Identité visuelle</li>
+          <li>✓ Pack Business Autopilote (chatbot + auto-réseaux + workflow)</li>
+          <li>✓ Pack pub mensuel Facebook</li>
+          <li>✓ Abonnement 10 visuels réseaux (1 mois)</li>
+          <li>✓ 2 articles web SEO</li>
+        </ul>
+        <div class="pack-saving">Valeur séparée : 432 000 FCFA</div>
+        <div class="pack-price">
+          <span class="price-fcfa">299 000 FCFA</span>
+          <span class="price-usd">/ 485 $</span>
+        </div>
+        <div class="pack-delay">⏱ Livraison en 25–35 jours</div>
+        <a href="paiement.html?service=Pack+Premium+Tout+déléguer&montant=299000&usd=485#paiement" class="btn btn-primary" onclick="gtag('event','click_pack',{event_category:'conversion',event_label:'Pack Premium'})">Choisir ce pack →</a>
+      </div>
+
+    </div>
+
+    <p class="packs-note">💡 Vous ne trouvez pas ce qu'il vous faut ? <a href="paiement.html#contact">Contactez-moi</a> pour un devis personnalisé gratuit.</p>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="portfolio" id="portfolio" aria-labelledby="portfolio-title">
+    <p class="section-label">Portfolio</p>
+    <h2 id="portfolio-title">Réalisations &amp; projets en cours</h2>
+    <div class="portfolio-grid">
+      <div class="portfolio-card">
+        <div class="portfolio-tag">Identité visuelle — Projet client</div>
+        <h3>Logo &amp; charte graphique</h3>
+        <p>Petite entreprise locale</p>
+        <span class="portfolio-status coming-soon">Bientôt disponible</span>
+      </div>
+      <div class="portfolio-card">
+        <div class="portfolio-tag">Boutique en ligne — Projet client</div>
+        <h3>Boutique Shopify</h3>
+        <p>E-commerce import/vente</p>
+        <span class="portfolio-status coming-soon">Bientôt disponible</span>
+      </div>
+      <div class="portfolio-card">
+        <div class="portfolio-tag">Site vitrine — Ce site</div>
+        <h3><a href="https://www.facebook.com/dtacademy2" target="_blank" rel="noopener noreferrer">Fridoce Design and Trade Center</a></h3>
+        <p>Site officiel de la marque</p>
+        <span class="portfolio-status live">En ligne</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <a href="https://www.facebook.com/dtacademy2" rel="noopener noreferrer" target="_blank">Fridoce Design and Trade Center</a>
+    — Cotonou, Bénin — © 2026
+  </footer>
+
+  <!-- BOUTON WHATSAPP STICKY -->
+  <a href="https://wa.me/22995250774?text=Bonjour%2C%20j%27aimerais%20en%20savoir%20plus%20sur%20vos%20services."
+     class="sticky-whatsapp"
+     aria-label="Nous contacter sur WhatsApp"
+     target="_blank"
+     rel="noopener noreferrer"
+     onclick="gtag('event','click_whatsapp_sticky',{event_category:'conversion'})">
+    💬 Nous contacter
+  </a>
+
+  <script src="dynamic.js"></script>
+</body>
+</html>

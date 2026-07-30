@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon espace — Fridoce Design and Trade Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#121212; --bg-soft:#181818; --surface:#1d1d1d;
+  --border:rgba(255,255,255,0.08); --border-strong:rgba(255,255,255,0.16);
+  --text:#f2f1ee; --text-dim:#a3a19a; --text-faint:#6b6962;
+  --accent:#FF7F00; --accent2:#FDB830;
+  --accent-soft:rgba(255,127,0,0.14); --accent-line:rgba(255,127,0,0.35);
+  --error:#e05c5c; --success:#7cc98a; --radius:1.25rem;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif; min-height:100dvh;}
+.grain{position:fixed;inset:0;z-index:50;pointer-events:none;opacity:0.035;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+nav{position:sticky;top:0;z-index:40;background:rgba(18,18,18,0.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;max-width:1200px;margin:0 auto;}
+.brand{display:flex;align-items:center;gap:0.6rem;font-weight:700;font-size:1rem;text-decoration:none;color:var(--text);}
+.brand img{height:30px;border-radius:8px;}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.user-name{font-size:0.85rem;color:var(--text-dim);}
+.btn-logout{font-size:0.82rem;padding:0.5rem 1rem;border-radius:999px;border:1px solid var(--border);background:transparent;color:var(--text-dim);cursor:pointer;font-family:'Outfit',sans-serif;}
+.btn-logout:hover{border-color:var(--border-strong);color:var(--text);}
+
+.wrap{max-width:1200px;margin:0 auto;padding:0 1.5rem;}
+.page-grid{display:grid;grid-template-columns:260px 1fr;gap:1.5rem;padding:2rem 0;align-items:start;}
+@media(max-width:860px){.page-grid{grid-template-columns:1fr;}}
+
+.sidebar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem;position:sticky;top:80px;}
+.sidebar-title{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-faint);margin-bottom:1rem;}
+.nav-item{display:flex;align-items:center;gap:0.7rem;padding:0.65rem 0.8rem;border-radius:0.75rem;cursor:pointer;font-size:0.9rem;color:var(--text-dim);transition:background .2s,color .2s;margin-bottom:0.3rem;}
+.nav-item:hover{background:rgba(255,255,255,0.04);color:var(--text);}
+.nav-item.active{background:var(--accent-soft);color:var(--accent2);border:1px solid var(--accent-line);}
+.nav-item span{font-size:1rem;}
+
+.panel{display:none;}
+.panel.active{display:block;}
+.panel-title{font-size:1.4rem;font-weight:700;letter-spacing:-0.015em;margin-bottom:1.5rem;}
+
+.order-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem;margin-bottom:1rem;transition:border-color .25s;}
+.order-card:hover{border-color:var(--border-strong);}
+.order-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.8rem;}
+.order-service{font-weight:600;font-size:1rem;}
+.order-formule{font-size:0.8rem;color:var(--text-dim);margin-top:0.15rem;}
+.status-badge{font-size:0.75rem;font-weight:700;padding:0.3rem 0.8rem;border-radius:999px;border:1px solid;}
+.order-meta{display:flex;gap:1.5rem;font-size:0.82rem;color:var(--text-faint);margin-bottom:1rem;flex-wrap:wrap;}
+.order-actions{display:flex;gap:0.6rem;flex-wrap:wrap;}
+.btn-sm{font-size:0.82rem;padding:0.5rem 1rem;border-radius:999px;border:1px solid var(--border);background:transparent;color:var(--text-dim);cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s;}
+.btn-sm:hover{border-color:var(--accent-line);color:var(--accent2);}
+.btn-sm.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#1c1407;border:none;font-weight:600;}
+
+.empty-state{text-align:center;padding:3rem;color:var(--text-faint);}
+.empty-state .icon{font-size:2.5rem;margin-bottom:1rem;}
+.empty-state p{margin-bottom:1.2rem;font-size:0.95rem;}
+
+.msg-thread{background:var(--bg-soft);border-radius:var(--radius);overflow:hidden;}
+.msg-header{padding:1rem 1.2rem;border-bottom:1px solid var(--border);font-size:0.88rem;color:var(--text-dim);}
+.msg-list{padding:1rem 1.2rem;max-height:360px;overflow-y:auto;display:flex;flex-direction:column;gap:0.8rem;}
+.msg-bubble{max-width:75%;padding:0.7rem 1rem;border-radius:1rem;font-size:0.88rem;line-height:1.5;}
+.msg-bubble.client{background:var(--accent-soft);border:1px solid var(--accent-line);align-self:flex-end;}
+.msg-bubble.admin{background:var(--surface);border:1px solid var(--border);align-self:flex-start;}
+.msg-meta{font-size:0.72rem;color:var(--text-faint);margin-top:0.3rem;}
+.msg-form{display:flex;gap:0.7rem;padding:1rem 1.2rem;border-top:1px solid var(--border);}
+.msg-input{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:0.7rem 1rem;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.88rem;}
+.msg-input:focus{outline:none;border-color:var(--accent-line);}
+.btn-send{padding:0.7rem 1.2rem;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#1c1407;font-weight:700;cursor:pointer;font-size:0.85rem;}
+
+.file-list{display:flex;flex-direction:column;gap:0.6rem;}
+.file-item{background:var(--surface);border:1px solid var(--border);border-radius:0.75rem;padding:0.9rem 1.1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+.file-name{font-size:0.88rem;font-weight:500;}
+.file-meta{font-size:0.78rem;color:var(--text-faint);}
+.btn-download{font-size:0.78rem;padding:0.4rem 0.9rem;border-radius:999px;border:1px solid var(--accent-line);background:var(--accent-soft);color:var(--accent2);cursor:pointer;text-decoration:none;font-family:'Outfit',sans-serif;}
+
+.profile-form{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+@media(max-width:600px){.profile-form{grid-template-columns:1fr;}}
+.field label{font-size:0.82rem;color:var(--text-dim);font-weight:600;display:block;margin-bottom:0.4rem;}
+.field input{width:100%;padding:0.8rem 1rem;background:var(--bg-soft);border:1px solid var(--border);border-radius:0.75rem;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.9rem;}
+.field input:focus{outline:none;border-color:var(--accent-line);}
+.btn-save{margin-top:1rem;padding:0.75rem 2rem;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#1c1407;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;}
+
+.progress-bar{height:4px;background:var(--border);border-radius:999px;margin:0.6rem 0;}
+.progress-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .6s cubic-bezier(.16,1,.3,1);}
+
+#loading{text-align:center;padding:4rem;color:var(--text-faint);}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="brand"><img src="assets/logo_icon.png" alt="FDTC"> Mon espace FDTC</a>
+    <div class="nav-right">
+      <span class="user-name" id="user-name">…</span>
+      <button class="btn-logout" onclick="handleLogout()">Déconnexion</button>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div id="loading">Chargement…</div>
+  <div class="page-grid" id="main-content" style="display:none;">
+
+    <div class="sidebar">
+      <div class="sidebar-title">Navigation</div>
+      <div class="nav-item active" onclick="showPanel('orders')"><span>📦</span> Mes commandes</div>
+      <div class="nav-item" onclick="showPanel('files')"><span>📁</span> Mes fichiers</div>
+      <div class="nav-item" onclick="showPanel('messages')"><span>💬</span> Messages <span id="unread-badge" style="display:none;background:var(--accent);color:#1c1407;font-size:0.7rem;padding:1px 7px;border-radius:999px;font-weight:700;"></span></div>
+      <div class="nav-item" onclick="showPanel('profile')"><span>👤</span> Mon profil</div>
+      <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);">
+        <a href="services.html" class="nav-item" style="text-decoration:none;"><span>➕</span> Nouveau service</a>
+      </div>
+    </div>
+
+    <div>
+      <!-- COMMANDES -->
+      <div class="panel active" id="panel-orders">
+        <div class="panel-title">Mes commandes</div>
+        <div id="orders-list"><div class="empty-state"><div class="icon">📦</div><p>Aucune commande pour l'instant.</p><a href="services.html" class="btn-sm primary">Découvrir les services</a></div></div>
+      </div>
+
+      <!-- FICHIERS -->
+      <div class="panel" id="panel-files">
+        <div class="panel-title">Fichiers livrés</div>
+        <div id="files-list"><div class="empty-state"><div class="icon">📁</div><p>Vos fichiers livrés apparaîtront ici.</p></div></div>
+      </div>
+
+      <!-- MESSAGES -->
+      <div class="panel" id="panel-messages">
+        <div class="panel-title">Messages</div>
+        <div id="messages-selector" style="margin-bottom:1rem;"></div>
+        <div id="msg-thread-wrap"></div>
+      </div>
+
+      <!-- PROFIL -->
+      <div class="panel" id="panel-profile">
+        <div class="panel-title">Mon profil</div>
+        <div class="profile-form" id="profile-form">
+          <div class="field"><label>Nom complet</label><input type="text" id="p-name" maxlength="100"></div>
+          <div class="field"><label>Email</label><input type="email" id="p-email" disabled></div>
+          <div class="field"><label>Téléphone</label><input type="text" id="p-phone" placeholder="+229 01 95 25 07 74" maxlength="30"></div>
+          <div class="field"><label>Indicatif pays</label><input type="text" id="p-country" maxlength="10"></div>
+        </div>
+        <button class="btn-save" onclick="saveProfile()">Enregistrer les modifications</button>
+        <p id="profile-msg" style="font-size:0.82rem;margin-top:0.7rem;color:var(--success);display:none;"></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="fdtc-core.js"></script>
+<script>
+let currentUser = null;
+let userOrders = [];
+let activeOrderId = null;
+
+(async () => {
+  const session = await requireAuth();
+  if (!session) return;
+  currentUser = session.user;
+  document.getElementById('user-name').textContent = currentUser.user_metadata?.full_name || currentUser.email;
+  await loadOrders();
+  await loadProfile();
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('main-content').style.display = 'grid';
+})();
+
+function showPanel(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+  if (name === 'files') loadFiles();
+  if (name === 'messages') loadMessages();
+}
+
+async function loadOrders() {
+  const { data, error } = await db
+    .from('orders')
+    .select('*')
+    .eq('user_id', currentUser.id)
+    .order('created_at', { ascending: false });
+  if (error || !data?.length) return;
+  userOrders = data;
+
+  const STATUS_PROGRESS = { en_attente: 5, acompte_recu: 25, en_cours: 60, revision: 80, livre: 100, annule: 0 };
+  document.getElementById('orders-list').innerHTML = data.map(o => {
+    const s = ORDER_STATUSES[o.status] || ORDER_STATUSES.en_attente;
+    const progress = STATUS_PROGRESS[o.status] || 0;
+    return `
+    <div class="order-card">
+      <div class="order-header">
+        <div>
+          <div class="order-service">${sanitize(o.service)}</div>
+          <div class="order-formule">${sanitize(o.formule)}</div>
+        </div>
+        <span class="status-badge" style="color:${s.color};border-color:${s.color}40;background:${s.color}15;">${s.icon} ${s.label}</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${progress}%"></div></div>
+      <div class="order-meta">
+        <span>💰 ${formatFCFA(o.amount_fcfa)}</span>
+        <span>📅 ${formatDate(o.created_at)}</span>
+      </div>
+      <div class="order-actions">
+        <button class="btn-sm" onclick="openMessages('${o.id}')">💬 Messages</button>
+        <button class="btn-sm" onclick="openFiles('${o.id}')">📁 Fichiers</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+async function loadFiles() {
+  if (!userOrders.length) return;
+  const orderIds = userOrders.map(o => o.id);
+  const { data } = await db.from('files').select('*').in('order_id', orderIds).order('created_at', { ascending: false });
+  const el = document.getElementById('files-list');
+  if (!data?.length) { el.innerHTML = '<div class="empty-state"><div class="icon">📁</div><p>Aucun fichier livré pour l\'instant.</p></div>'; return; }
+  el.innerHTML = '<div class="file-list">' + data.map(f => `
+    <div class="file-item">
+      <div><div class="file-name">${sanitize(f.filename)}</div><div class="file-meta">${formatDate(f.created_at)}</div></div>
+      <a class="btn-download" onclick="downloadFile('${f.storage_path}','${sanitize(f.filename)}')">⬇ Télécharger</a>
+    </div>`).join('') + '</div>';
+}
+
+async function downloadFile(path, filename) {
+  const { data, error } = await db.storage.from('deliverables').createSignedUrl(path, 300);
+  if (error || !data) { alert('Fichier temporairement indisponible.'); return; }
+  const a = document.createElement('a');
+  a.href = data.signedUrl; a.download = filename; a.click();
+}
+
+async function openMessages(orderId) {
+  activeOrderId = orderId;
+  showPanel('messages');
+  await loadMessages();
+}
+
+async function openFiles(orderId) {
+  showPanel('files');
+}
+
+async function loadMessages() {
+  if (!userOrders.length) { document.getElementById('msg-thread-wrap').innerHTML = '<div class="empty-state"><p>Aucune commande à sélectionner.</p></div>'; return; }
+  const selector = document.getElementById('messages-selector');
+  selector.innerHTML = '<div style="display:flex;gap:0.5rem;flex-wrap:wrap;">' + userOrders.map(o =>
+    `<button class="btn-sm${activeOrderId === o.id ? ' primary' : ''}" onclick="activeOrderId='${o.id}';loadMessages()">${sanitize(o.service)} — ${sanitize(o.formule)}</button>`
+  ).join('') + '</div>';
+
+  if (!activeOrderId) { activeOrderId = userOrders[0].id; }
+
+  const { data } = await db.from('messages').select('*').eq('order_id', activeOrderId).order('created_at', { ascending: true });
+  const wrap = document.getElementById('msg-thread-wrap');
+  wrap.innerHTML = `
+    <div class="msg-thread">
+      <div class="msg-header">Conversation avec FDTC</div>
+      <div class="msg-list" id="msg-list">
+        ${!data?.length ? '<p style="color:var(--text-faint);text-align:center;font-size:0.85rem;">Démarrez la conversation ci-dessous.</p>' :
+          data.map(m => `
+          <div>
+            <div class="msg-bubble ${m.sender_role}">${sanitize(m.content)}</div>
+            <div class="msg-meta" style="text-align:${m.sender_role === 'client' ? 'right' : 'left'}">${formatDate(m.created_at)}</div>
+          </div>`).join('')}
+      </div>
+      <div class="msg-form">
+        <input class="msg-input" id="msg-input" placeholder="Votre message…" maxlength="2000" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage();}">
+        <button class="btn-send" onclick="sendMessage()">Envoyer</button>
+      </div>
+    </div>`;
+  const list = document.getElementById('msg-list');
+  if (list) list.scrollTop = list.scrollHeight;
+}
+
+async function sendMessage() {
+  const input = document.getElementById('msg-input');
+  const content = sanitize(input.value.trim());
+  if (!content || !activeOrderId) return;
+  const rl = checkRateLimit('msg', 2000);
+  if (!rl.allowed) return;
+  input.value = '';
+  await db.from('messages').insert({ order_id: activeOrderId, sender_id: currentUser.id, sender_role: 'client', content });
+  await loadMessages();
+}
+
+async function loadProfile() {
+  const { data } = await db.from('profiles').select('*').eq('id', currentUser.id).single();
+  if (!data) return;
+  document.getElementById('p-name').value = data.full_name || '';
+  document.getElementById('p-email').value = currentUser.email || '';
+  document.getElementById('p-phone').value = data.phone || '';
+  document.getElementById('p-country').value = data.country_code || '+229';
+}
+
+async function saveProfile() {
+  const name = sanitize(document.getElementById('p-name').value.trim());
+  const phone = sanitize(document.getElementById('p-phone').value.trim());
+  const country = sanitize(document.getElementById('p-country').value.trim());
+  if (!name) { alert('Le nom ne peut pas être vide.'); return; }
+  const { error } = await db.from('profiles').update({ full_name: name, phone, country_code: country }).eq('id', currentUser.id);
+  const msg = document.getElementById('profile-msg');
+  msg.textContent = error ? 'Erreur lors de la sauvegarde.' : 'Profil mis à jour ✓';
+  msg.style.color = error ? 'var(--error)' : 'var(--success)';
+  msg.style.display = 'block';
+  setTimeout(() => msg.style.display = 'none', 3000);
+}
+
+async function handleLogout() {
+  await db.auth.signOut();
+  window.location.href = 'index.html';
+}
+</script>
+</body>
+</html>

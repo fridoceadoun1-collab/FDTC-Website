@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin FDTC — Tableau de bord</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e0e0e; --bg-soft:#141414; --surface:#1a1a1a;
+  --border:rgba(255,255,255,0.07); --border-strong:rgba(255,255,255,0.14);
+  --text:#f2f1ee; --text-dim:#a3a19a; --text-faint:#6b6962;
+  --accent:#FF7F00; --accent2:#FDB830;
+  --accent-soft:rgba(255,127,0,0.12); --accent-line:rgba(255,127,0,0.3);
+  --error:#e05c5c; --success:#7cc98a; --radius:1.1rem;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;min-height:100dvh;display:flex;}
+.grain{position:fixed;inset:0;z-index:50;pointer-events:none;opacity:0.03;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* SIDEBAR */
+.sidebar{width:220px;flex-shrink:0;background:var(--bg-soft);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:1.4rem 1rem;position:sticky;top:0;height:100dvh;overflow-y:auto;}
+.sidebar-brand{display:flex;align-items:center;gap:0.6rem;margin-bottom:2rem;padding:0 0.4rem;}
+.sidebar-brand img{height:28px;border-radius:6px;}
+.sidebar-brand span{font-weight:700;font-size:0.92rem;color:var(--text);}
+.sidebar-section{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-faint);padding:0 0.4rem;margin:1.2rem 0 0.5rem;}
+.nav-item{display:flex;align-items:center;gap:0.7rem;padding:0.6rem 0.8rem;border-radius:0.7rem;cursor:pointer;font-size:0.88rem;color:var(--text-dim);transition:all .2s;margin-bottom:0.2rem;}
+.nav-item:hover{background:rgba(255,255,255,0.04);color:var(--text);}
+.nav-item.active{background:var(--accent-soft);color:var(--accent2);}
+.sidebar-bottom{margin-top:auto;padding-top:1rem;border-top:1px solid var(--border);}
+.btn-logout{width:100%;padding:0.6rem;border-radius:999px;border:1px solid var(--border);background:transparent;color:var(--text-faint);cursor:pointer;font-family:'Outfit',sans-serif;font-size:0.82rem;}
+.btn-logout:hover{border-color:var(--border-strong);color:var(--text);}
+
+/* MAIN */
+.main{flex:1;overflow-y:auto;padding:2rem;}
+.panel{display:none;}
+.panel.active{display:block;}
+.panel-title{font-size:1.5rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.4rem;}
+.panel-sub{font-size:0.88rem;color:var(--text-faint);margin-bottom:1.8rem;}
+
+/* STATS CARDS */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem;}
+@media(max-width:1000px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;}
+.stat-label{font-size:0.75rem;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.4rem;}
+.stat-num{font-size:1.8rem;font-weight:700;letter-spacing:-0.02em;font-family:'Outfit',sans-serif;}
+.stat-hint{font-size:0.75rem;color:var(--text-faint);margin-top:0.2rem;}
+
+/* TABLE */
+.table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem;}
+.table-head{display:grid;padding:0.8rem 1.2rem;border-bottom:1px solid var(--border);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-faint);}
+.table-row{display:grid;padding:1rem 1.2rem;border-bottom:1px solid var(--border);align-items:center;transition:background .15s;cursor:pointer;}
+.table-row:last-child{border-bottom:none;}
+.table-row:hover{background:rgba(255,255,255,0.02);}
+.orders-cols{grid-template-columns:2fr 1.2fr 1fr 1fr 0.8fr 0.8fr;}
+.clients-cols{grid-template-columns:2fr 1.5fr 1fr 1fr;}
+.cell-primary{font-size:0.9rem;font-weight:500;}
+.cell-sub{font-size:0.78rem;color:var(--text-faint);}
+.status-badge{font-size:0.72rem;font-weight:700;padding:0.25rem 0.7rem;border-radius:999px;border:1px solid;display:inline-block;}
+.badge-unread{background:var(--accent-soft);color:var(--accent2);border:1px solid var(--accent-line);font-size:0.7rem;padding:0.2rem 0.6rem;border-radius:999px;font-weight:700;}
+
+/* MODAL */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:100;display:flex;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px);}
+.modal{background:var(--bg-soft);border:1px solid var(--border);border-radius:1.5rem;width:100%;max-width:680px;max-height:90dvh;overflow-y:auto;padding:2rem;}
+.modal-title{font-size:1.2rem;font-weight:700;margin-bottom:0.3rem;}
+.modal-sub{font-size:0.85rem;color:var(--text-faint);margin-bottom:1.5rem;}
+.modal-close{float:right;background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:1.2rem;margin-top:-0.2rem;}
+.modal-section{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-faint);margin:1.2rem 0 0.6rem;}
+.field{margin-bottom:0.9rem;}
+.field label{font-size:0.82rem;color:var(--text-dim);font-weight:600;display:block;margin-bottom:0.35rem;}
+.field input,.field textarea,.field select{width:100%;padding:0.75rem 0.9rem;background:var(--bg);border:1px solid var(--border);border-radius:0.75rem;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.88rem;}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--accent-line);}
+.field textarea{resize:vertical;min-height:80px;}
+.modal-actions{display:flex;gap:0.7rem;margin-top:1.2rem;flex-wrap:wrap;}
+.btn-primary{padding:0.75rem 1.4rem;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#1c1407;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;font-size:0.88rem;}
+.btn-ghost{padding:0.75rem 1.2rem;border-radius:999px;border:1px solid var(--border);background:transparent;color:var(--text-dim);cursor:pointer;font-family:'Outfit',sans-serif;font-size:0.88rem;}
+.btn-ghost:hover{border-color:var(--border-strong);color:var(--text);}
+.btn-danger{padding:0.75rem 1.2rem;border-radius:999px;border:1px solid rgba(224,92,92,0.3);background:rgba(224,92,92,0.1);color:var(--error);cursor:pointer;font-family:'Outfit',sans-serif;font-size:0.88rem;}
+
+/* MESSAGES in modal */
+.msg-list{max-height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:0.7rem;margin-bottom:0.8rem;padding:0.8rem;background:var(--bg);border-radius:0.75rem;border:1px solid var(--border);}
+.msg-bubble{max-width:80%;padding:0.65rem 0.9rem;border-radius:0.9rem;font-size:0.85rem;line-height:1.5;}
+.msg-bubble.client{background:var(--accent-soft);border:1px solid var(--accent-line);align-self:flex-end;}
+.msg-bubble.admin{background:var(--surface);border:1px solid var(--border);align-self:flex-start;}
+.msg-meta-row{font-size:0.7rem;color:var(--text-faint);margin-top:0.25rem;}
+.msg-form{display:flex;gap:0.6rem;}
+.msg-input{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:0.65rem 1rem;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.85rem;}
+.msg-input:focus{outline:none;border-color:var(--accent-line);}
+.btn-send{padding:0.65rem 1.1rem;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#1c1407;font-weight:700;cursor:pointer;font-size:0.82rem;}
+
+/* FILE UPLOAD */
+.upload-zone{border:2px dashed var(--border);border-radius:0.75rem;padding:1.5rem;text-align:center;cursor:pointer;transition:border-color .2s;font-size:0.88rem;color:var(--text-faint);}
+.upload-zone:hover{border-color:var(--accent-line);color:var(--accent2);}
+.file-list-admin{display:flex;flex-direction:column;gap:0.5rem;margin-top:0.8rem;}
+.file-item-admin{display:flex;align-items:center;justify-content:space-between;background:var(--bg);border:1px solid var(--border);border-radius:0.6rem;padding:0.6rem 0.9rem;font-size:0.82rem;}
+.btn-del-file{background:none;border:none;color:var(--error);cursor:pointer;font-size:0.8rem;opacity:0.7;}
+.btn-del-file:hover{opacity:1;}
+
+#loading{text-align:center;padding:4rem;color:var(--text-faint);flex:1;}
+.empty-state{text-align:center;padding:2.5rem;color:var(--text-faint);font-size:0.9rem;}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sidebar-brand"><img src="assets/logo_icon.png" alt="FDTC"><span>FDTC Admin</span></div>
+  <div class="sidebar-section">Principal</div>
+  <div class="nav-item active" onclick="showPanel('overview')">📊 Vue d'ensemble</div>
+  <div class="nav-item" onclick="showPanel('orders')">📦 Commandes</div>
+  <div class="nav-item" onclick="showPanel('clients')">👥 Clients</div>
+  <div class="sidebar-section">Outils</div>
+  <div class="nav-item" onclick="window.open('https://app.supabase.com','_blank')">🗄 Supabase</div>
+  <div class="nav-item" onclick="window.open('index.html','_blank')">🌐 Voir le site</div>
+  <div class="sidebar-bottom">
+    <button class="btn-logout" onclick="handleLogout()">Déconnexion</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main" id="main-loading" style="display:flex;align-items:center;justify-content:center;">
+  <div style="text-align:center;color:var(--text-faint);">Vérification des accès…</div>
+</div>
+
+<div class="main" id="main-content" style="display:none;">
+
+  <!-- VUE D'ENSEMBLE -->
+  <div class="panel active" id="panel-overview">
+    <div class="panel-title">Tableau de bord</div>
+    <div class="panel-sub">Bonjour, ADOUN Fridoce 👋</div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-label">Commandes totales</div><div class="stat-num" id="stat-total">—</div></div>
+      <div class="stat-card"><div class="stat-label">En cours</div><div class="stat-num" id="stat-encours">—</div></div>
+      <div class="stat-card"><div class="stat-label">Livrées</div><div class="stat-num" id="stat-livre">—</div></div>
+      <div class="stat-card"><div class="stat-label">Revenus (FCFA)</div><div class="stat-num" id="stat-revenue">—</div></div>
+    </div>
+    <div class="panel-title" style="font-size:1.1rem;margin-bottom:1rem;">Dernières commandes</div>
+    <div id="recent-orders-list"></div>
+  </div>
+
+  <!-- COMMANDES -->
+  <div class="panel" id="panel-orders">
+    <div class="panel-title">Commandes</div>
+    <div class="panel-sub">Gérez les statuts, fichiers et messages de chaque commande.</div>
+    <div class="table-wrap">
+      <div class="table-head orders-cols">
+        <span>Client / Service</span><span>Formule</span><span>Montant</span><span>Statut</span><span>Messages</span><span>Date</span>
+      </div>
+      <div id="orders-table-body"></div>
+    </div>
+  </div>
+
+  <!-- CLIENTS -->
+  <div class="panel" id="panel-clients">
+    <div class="panel-title">Clients</div>
+    <div class="panel-sub">Liste des comptes enregistrés sur la plateforme.</div>
+    <div class="table-wrap">
+      <div class="table-head clients-cols">
+        <span>Nom</span><span>Email</span><span>Commandes</span><span>Inscription</span>
+      </div>
+      <div id="clients-table-body"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL COMMANDE -->
+<div class="overlay" id="order-modal" style="display:none;" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="document.getElementById('order-modal').style.display='none'">✕</button>
+    <div class="modal-title" id="modal-title">Commande</div>
+    <div class="modal-sub" id="modal-sub"></div>
+
+    <div class="modal-section">Statut de la commande</div>
+    <div class="field">
+      <select id="modal-status">
+        <option value="en_attente">⏳ En attente de paiement</option>
+        <option value="acompte_recu">💰 Acompte reçu</option>
+        <option value="en_cours">🔧 En cours de réalisation</option>
+        <option value="revision">🔄 En révision</option>
+        <option value="livre">✅ Livré</option>
+        <option value="annule">❌ Annulé</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Note interne (non visible par le client)</label>
+      <textarea id="modal-notes" placeholder="Note de suivi, rappel..."></textarea>
+    </div>
+    <button class="btn-primary" onclick="updateOrderStatus()">Mettre à jour le statut</button>
+
+    <div class="modal-section">Messages client</div>
+    <div class="msg-list" id="modal-msg-list"></div>
+    <div class="msg-form">
+      <input class="msg-input" id="modal-msg-input" placeholder="Répondre au client…" maxlength="2000" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendAdminMessage();}">
+      <button class="btn-send" onclick="sendAdminMessage()">Envoyer</button>
+    </div>
+
+    <div class="modal-section">Fichiers livrés</div>
+    <div id="modal-file-list" class="file-list-admin"></div>
+    <div class="upload-zone" onclick="document.getElementById('file-input').click()">
+      📎 Cliquez pour ajouter un fichier livrable
+    </div>
+    <input type="file" id="file-input" style="display:none" onchange="uploadFile(event)" multiple>
+
+    <div class="modal-actions" style="margin-top:1.5rem;">
+      <button class="btn-ghost" onclick="document.getElementById('order-modal').style.display='none'">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="fdtc-core.js"></script>
+<script>
+let currentAdmin = null;
+let allOrders = [];
+let currentOrderId = null;
+
+(async () => {
+  const session = await requireAdmin();
+  if (!session) return;
+  currentAdmin = session.user;
+  document.getElementById('main-loading').style.display = 'none';
+  document.getElementById('main-content').style.display = 'block';
+  await loadOverview();
+  await loadOrders();
+  await loadClients();
+})();
+
+function showPanel(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+async function loadOverview() {
+  const { data } = await db.from('orders').select('*');
+  if (!data) return;
+  const encours = data.filter(o => ['acompte_recu','en_cours','revision'].includes(o.status)).length;
+  const livre = data.filter(o => o.status === 'livre').length;
+  const revenue = data.filter(o => o.status !== 'annule').reduce((s, o) => s + (o.amount_fcfa || 0), 0);
+  document.getElementById('stat-total').textContent = data.length;
+  document.getElementById('stat-encours').textContent = encours;
+  document.getElementById('stat-livre').textContent = livre;
+  document.getElementById('stat-revenue').textContent = new Intl.NumberFormat('fr-FR').format(revenue);
+
+  const recent = [...data].sort((a,b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 5);
+  document.getElementById('recent-orders-list').innerHTML = recent.length ? `
+    <div class="table-wrap">
+      <div class="table-head orders-cols"><span>Client</span><span>Formule</span><span>Montant</span><span>Statut</span><span>Msgs</span><span>Date</span></div>
+      ${recent.map(o => buildOrderRow(o)).join('')}
+    </div>` : '<div class="empty-state">Aucune commande.</div>';
+}
+
+async function loadOrders() {
+  const { data } = await db.from('admin_orders_view').select('*').order('created_at', { ascending: false });
+  allOrders = data || [];
+  document.getElementById('orders-table-body').innerHTML = allOrders.length
+    ? allOrders.map(o => buildOrderRow(o)).join('')
+    : '<div class="empty-state">Aucune commande.</div>';
+}
+
+function buildOrderRow(o) {
+  const s = ORDER_STATUSES[o.status] || ORDER_STATUSES.en_attente;
+  return `<div class="table-row orders-cols" onclick="openOrder('${o.id}')">
+    <div><div class="cell-primary">${sanitize(o.client_name || o.service)}</div><div class="cell-sub">${sanitize(o.service || '')}</div></div>
+    <div class="cell-sub">${sanitize(o.formule || '')}</div>
+    <div class="cell-sub">${formatFCFA(o.amount_fcfa)}</div>
+    <div><span class="status-badge" style="color:${s.color};border-color:${s.color}40;background:${s.color}15;">${s.icon} ${s.label}</span></div>
+    <div>${(o.unread_messages > 0) ? `<span class="badge-unread">${o.unread_messages}</span>` : '<span style="color:var(--text-faint);font-size:0.8rem;">—</span>'}</div>
+    <div class="cell-sub">${formatDate(o.created_at)}</div>
+  </div>`;
+}
+
+async function loadClients() {
+  const { data: profiles } = await db.from('profiles').select('*').eq('role', 'client').order('created_at', { ascending: false });
+  if (!profiles?.length) { document.getElementById('clients-table-body').innerHTML = '<div class="empty-state">Aucun client.</div>'; return; }
+  const { data: orders } = await db.from('orders').select('user_id');
+  const orderCount = {};
+  orders?.forEach(o => { orderCount[o.user_id] = (orderCount[o.user_id] || 0) + 1; });
+  document.getElementById('clients-table-body').innerHTML = profiles.map(p => `
+    <div class="table-row clients-cols">
+      <div class="cell-primary">${sanitize(p.full_name || '—')}</div>
+      <div class="cell-sub">${sanitize(p.phone || '—')}</div>
+      <div class="cell-sub">${orderCount[p.id] || 0} commande(s)</div>
+      <div class="cell-sub">${formatDate(p.created_at)}</div>
+    </div>`).join('');
+}
+
+async function openOrder(orderId) {
+  currentOrderId = orderId;
+  const { data: o } = await db.from('orders').select('*').eq('id', orderId).single();
+  if (!o) return;
+  document.getElementById('modal-title').textContent = `${o.service} — ${o.formule}`;
+  document.getElementById('modal-sub').textContent = `${formatFCFA(o.amount_fcfa)} · Commandé le ${formatDate(o.created_at)}`;
+  document.getElementById('modal-status').value = o.status;
+  document.getElementById('modal-notes').value = o.notes_admin || '';
+  await loadModalMessages(orderId);
+  await loadModalFiles(orderId);
+  // Marquer les messages client comme lus
+  await db.from('messages').update({ is_read: true }).eq('order_id', orderId).eq('sender_role', 'client');
+  document.getElementById('order-modal').style.display = 'flex';
+}
+
+async function updateOrderStatus() {
+  const status = document.getElementById('modal-status').value;
+  const notes_admin = sanitize(document.getElementById('modal-notes').value);
+  await db.from('orders').update({ status, notes_admin }).eq('id', currentOrderId);
+  await loadOrders();
+  await loadOverview();
+  document.getElementById('modal-status').value = status;
+}
+
+async function loadModalMessages(orderId) {
+  const { data } = await db.from('messages').select('*').eq('order_id', orderId).order('created_at', { ascending: true });
+  const list = document.getElementById('modal-msg-list');
+  list.innerHTML = !data?.length
+    ? '<p style="color:var(--text-faint);text-align:center;font-size:0.82rem;">Aucun message.</p>'
+    : data.map(m => `
+      <div>
+        <div class="msg-bubble ${m.sender_role}">${sanitize(m.content)}</div>
+        <div class="msg-meta-row" style="text-align:${m.sender_role === 'client' ? 'right' : 'left'}">${m.sender_role === 'client' ? 'Client' : 'FDTC'} · ${formatDate(m.created_at)}</div>
+      </div>`).join('');
+  list.scrollTop = list.scrollHeight;
+}
+
+async function sendAdminMessage() {
+  const input = document.getElementById('modal-msg-input');
+  const content = sanitize(input.value.trim());
+  if (!content || !currentOrderId) return;
+  input.value = '';
+  await db.from('messages').insert({ order_id: currentOrderId, sender_id: currentAdmin.id, sender_role: 'admin', content });
+  await loadModalMessages(currentOrderId);
+}
+
+async function loadModalFiles(orderId) {
+  const { data } = await db.from('files').select('*').eq('order_id', orderId).order('created_at', { ascending: false });
+  const list = document.getElementById('modal-file-list');
+  list.innerHTML = !data?.length ? '' : data.map(f => `
+    <div class="file-item-admin">
+      <span>${sanitize(f.filename)}</span>
+      <div style="display:flex;gap:0.6rem;align-items:center;">
+        <span style="font-size:0.72rem;color:var(--text-faint);">${formatDate(f.created_at)}</span>
+        <button class="btn-del-file" onclick="deleteFile('${f.id}','${f.storage_path}')">🗑</button>
+      </div>
+    </div>`).join('');
+}
+
+async function uploadFile(event) {
+  const files = event.target.files;
+  if (!files?.length || !currentOrderId) return;
+  for (const file of files) {
+    const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+    const path = `${currentOrderId}/${Date.now()}_${safeName}`;
+    const { error } = await db.storage.from('deliverables').upload(path, file);
+    if (!error) {
+      await db.from('files').insert({ order_id: currentOrderId, filename: file.name, storage_path: path, size_bytes: file.size });
+    }
+  }
+  await loadModalFiles(currentOrderId);
+  event.target.value = '';
+}
+
+async function deleteFile(fileId, path) {
+  if (!confirm('Supprimer ce fichier ?')) return;
+  await db.storage.from('deliverables').remove([path]);
+  await db.from('files').delete().eq('id', fileId);
+  await loadModalFiles(currentOrderId);
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('order-modal')) {
+    document.getElementById('order-modal').style.display = 'none';
+    loadOrders();
+  }
+}
+
+async function handleLogout() {
+  await db.auth.signOut();
+  window.location.href = 'auth.html';
+}
+</script>
+</body>
+</html>
